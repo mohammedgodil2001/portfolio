@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://use.typekit.net/pwy4wuq.css">
+</head>
+<body>
+  <!-- <main class="landing"> -->
+  <main>
+    <section class="landing">
+      <h1 class="visually-hidden">Welcome to Mohammed's Portfolio</h1>
+      <nav class="nav">
+          <!-- Added logo with custom src path -->
+          <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo">
+          
+          <!-- Added hamburger menu button -->
+          <button class="nav__button" aria-expanded="false" aria-controls="nav-list">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+          </button>
+  
+          <!-- Added navigation menu with mobile overlay -->
+          <ul class="nav__list" id="nav-list">
+              <div class="cross_and_logo">
+                  <!-- <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo"> -->
+                  <button class="closing__button" aria-label="Close menu">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                  </button>
+              </div>
+              
+              <div class="content_nav">
+                <div class="content_nav_links">
+                  <li class="nav__item"><a href="#about">About</a></li>
+                  <li class="nav__item"><a href="#projects">Projects</a></li>
+                  <li class="nav__item"><a href="#contact">Contact</a></li>
+                </div>
+    
+                <div class="content_nav_logo">
+                  <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="page_logo">
+                </div>
+              </div>
+          </ul>
+      </nav>
+      
+      <div class="hero-section">    
+        <article class="hero-section__intro">
+         <h2 class="visually-hidden">Intro text</h2>
+         <img src="./src/assets/phone_text.svg" alt="Intro text image">
+        </article>
+       
+         <article class="hero" id="home">
+           <h2 class="visually-hidden">Portfolio overview</h2>
+   
+           <div class="hero__content">
+             <p class="hero__text">
+               Student at Howest, passionate about creative coding and digital storytelling.
+               I love crafting websites where design and interaction come together.
+             </p>
+   
+             
+             <a class="button button--primary hero__cta" href="#projects">
+               Discover my projects
+               <span class="button__icon" aria-hidden="true">
+                 <img src="./src/assets/arrow.svg" alt="arrow" />
+               </span>
+             </a>
+           </div>
+   
+           <aside class="hero__aside">
+             <figure class="hero__figure">
+               <img
+                 class="hero__avatar"
+                 src="./src/assets/mohammeds_avatar.svg"
+                 alt="Portrait of Mohammed"
+               />
+               <figcaption class="visually-hidden">Mohammed</figcaption>
+             </figure>
+   
+             <div class="availability">
+               <p class="availability__status">Available for internship</p>
+               <p class="availability__date">Feb ’26</p>
+             </div>
+           </aside>
+         </article>
+      </div>
+    </section>
+
+
+
+    <section class="about">
+      <h2 class="visually-hidden">About section</h2>
+      
+      <article class="about__media">
+        <h3 class="visually-hidden">About media</h3>
+
+        <video class="about__video" autoplay loop muted playsinline>
+          <source src="./src/assets/mohammed_godil_kickstarter_final_render_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </article>
+      
+      <article class="about__text">
+        <h3 class="about__heading">A bit about me</h3>
+        <p class="about__description">
+          Hey, I’m Mohammed. A Devine student at Howest. I enjoy mixing design and code to build storytelling websites. 
+          I’m really into creative coding, playful interactions, and making ideas come alive online. 
+          Right now, I’m getting ready for my internship in February ’26.
+        </p>
+      </article>
+    </section>
+
+
+
+
+    <section class="projects-container">
+      
+      <div class="projects-list" id="projects">
+          <h2 class="projects-title">PROJECTS</h2>
+          <article class="project-item expandable-item">
+            <h3 class="visually-hidden">KICKSTARTER</h3>
+              <div class="project-header">
+                  <div class="project-name">KICKSTARTER</div>
+              </div>
+              <div class="project-details">
+                  <div class="project-year">2025</div>
+                  <div class="project-tech">After Effects</div>
+              </div>
+              
+              <div class="project-boxes">
+                  <div class="boxes-container">
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                  </div>
+              </div>
+          </article>
+  
+          <article class="project-item expandable-item">
+            <h3 class="visually-hidden">KICKSTARTER</h3>
+              <div class="project-header">
+                  <div class="project-name">KICKSTARTER</div>
+                  
+              </div>
+              <div class="project-details">
+                  <div class="project-year">2025</div>
+                  <div class="project-tech">After Effects</div>
+              </div>
+              
+              <div class="project-boxes">
+                  <div class="boxes-container">
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                  </div>
+              </div>
+          </article>
+  
+          <article class="project-item expandable-item">
+            <h3 class="visually-hidden">KICKSTARTER</h3>
+              <div class="project-header">
+                  <div class="project-name">KICKSTARTER</div>
+                  
+              </div>
+              <div class="project-details">
+                  <div class="project-year">2025</div>
+                  <div class="project-tech">After Effects</div>
+              </div>
+              
+              <div class="project-boxes">
+                  <div class="boxes-container">
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                  </div>
+              </div>
+          </article>
+  
+          <article class="project-item expandable-item">
+            <h3 class="visually-hidden">KICKSTARTER</h3>
+              <div class="project-header">
+                  <div class="project-name">KICKSTARTER</div>
+                  
+              </div>
+              <div class="project-details">
+                  <div class="project-year">2025</div>
+                  <div class="project-tech">After Effects</div>
+              </div>
+              
+              <div class="project-boxes">
+                  <div class="boxes-container">
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                      <div class="project-box"></div>
+                  </div>
+              </div>
+          </article>
+          
+        </div>
+    </section>
+
+
+    <!-- <section>
+      <h2>my expertise</h2>
+
+      <div class="card_1">
+        <div>
+          <img src="" alt="front-end icon">
+        </div>
+        <div>
+          <h3>front-end development</h3>
+          <p>I turn designs into interactive websites using clean, responsive code that brings ideas to life.</p>
+        </div>
+      </div>
+      <div class="card_2">
+        <div>
+          <img src="" alt="brand identity icon">
+        </div>
+        <div>
+          <h3>brand identity</h3>
+          <p>I create visual identities that give projects a clear voice and a consistent, memorable look.</p>
+        </div>
+      </div>
+      <div class="card_3">
+        <div>
+          <img src="" alt="web/app design icon">
+        </div>
+        <div>
+          <h3>web/app design</h3>
+          <p>Crafting apps and websites where usability meets creativity - intuitive to use, memorable to explore.</p>
+        </div>
+      </div>
+    </section> -->
+
+
+    <section class="expertise" aria-labelledby="expertise-title">
+      <h2 id="expertise-title" class="expertise__title">My expertise</h2>
+
+      <ul class="expertise__list">
+        <li class="expertise__item">
+          <article class="expertise-card">
+            <img class="expertise-card__icon" src="./src/assets/front_end.svg" alt="Front-end icon">
+            <div class="expertise-card__body">
+              <h3 class="expertise-card__title">Front-end development</h3>
+              <p class="expertise-card__text">
+                I turn designs into interactive websites using clean, responsive code that brings ideas to life.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <li class="expertise__item">
+          <article class="expertise-card">
+            <img class="expertise-card__icon" src="./src/assets/brand_identity.svg" alt="Brand identity icon">
+            <div class="expertise-card__body">
+              <h3 class="expertise-card__title">Brand identity</h3>
+              <p class="expertise-card__text">
+                I create visual identities that give projects a clear voice and a consistent, memorable look.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <li class="expertise__item">
+          <article class="expertise-card">
+            <img class="expertise-card__icon" src="./src/assets/web_App_design.svg" alt="Web/App design icon">
+            <div class="expertise-card__body">
+              <h3 class="expertise-card__title">Web/App design</h3>
+              <p class="expertise-card__text">
+                Crafting apps and websites where usability meets creativity — intuitive to use, memorable to explore.
+              </p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+
+
+     <section class="stack">
+        <h2 class="stack__title">CREATIVE & TECH STACK</h2>
+
+        
+        <button class="note" style="--x:12%; --y:45%; --r:-8deg;">Figma</button>
+        <button class="note" style="--x:45%; --y:28%; --r:11deg;">Javascript</button>
+        <button class="note" style="--x:85%; --y:39%; --r:-4deg;">React</button>
+        <button class="note" style="--x:48%; --y:55%; --r:-13deg;">Astro</button>
+        <button class="note" style="--x:78%; --y:70%; --r:-6deg;">Blender</button>
+        <button class="note" style="--x:25%; --y:75%; --r:10deg;">Adobe Apps</button>
+    </section>
+
+
+     <section class="scroll-section" id="scroll-main">
+        <div class="text-container" id="text-container">
+            <h1 class="scroll-text" id="scroll-text">So, ready to add an intern to your team?</h1>
+        </div>
+    </section>
+
+   <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-nav">
+                <div class="nav-column">
+                    <h3 class="nav-title">Explore</h3>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="nav-column">
+                    <h3 class="nav-title">Connect</h3>
+                    <ul class="nav-links">
+                        <li><a href="#">Linkedin</a></li>
+                        <li><a href="#">Behance</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-main-container">
+                <div class="footer-main">
+                    <h2 class="footer-heading">LET'S CONNECT</h2>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p class="footer-email">mohammed.godil2001@gmail.com</p>
+                    <p class="footer-copyright">Copyright Muhammed 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  </main>
+
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+   <script type="module" src="./src/main.js"></script>
+</body>
+</html>
