@@ -1,4 +1,4 @@
-import "../src/css/style.css";
+// import "../src/css/style.css";
 
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
