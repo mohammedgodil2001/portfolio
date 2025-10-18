@@ -9,15 +9,11 @@
     <link rel="stylesheet" href="./src/css/style.css">
 </head>
 <body>
-  <!-- <main class="landing"> -->
   <main>
     <section class="landing">
       <h1 class="visually-hidden">Welcome to Mohammed's Portfolio</h1>
       <nav class="nav">
-          <!-- Added logo with custom src path -->
           <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo">
-          
-          <!-- Added hamburger menu button -->
           <button class="nav__button" aria-expanded="false" aria-controls="nav-list">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -25,11 +21,8 @@
                   <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
           </button>
-  
-          <!-- Added navigation menu with mobile overlay -->
           <ul class="nav__list" id="nav-list">
               <div class="cross_and_logo">
-                  <!-- <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo"> -->
                   <button class="closing__button" aria-label="Close menu">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -122,9 +115,13 @@
 
 
     <section class="projects-container">
+
+     <div class="projects-title-stage">
+      <h2 class="projects-title" id="projects-title">PROJECTS</h2>
+    </div>
       
       <div class="projects-list" id="projects">
-          <h2 class="projects-title">PROJECTS</h2>
+          <!-- <h2 class="projects-title">PROJECTS</h2> -->
           <article class="project-item expandable-item">
             <h3 class="visually-hidden">KICKSTARTER</h3>
               <div class="project-header">
@@ -207,40 +204,7 @@
         </div>
     </section>
 
-
-    <!-- <section>
-      <h2>my expertise</h2>
-
-      <div class="card_1">
-        <div>
-          <img src="" alt="front-end icon">
-        </div>
-        <div>
-          <h3>front-end development</h3>
-          <p>I turn designs into interactive websites using clean, responsive code that brings ideas to life.</p>
-        </div>
-      </div>
-      <div class="card_2">
-        <div>
-          <img src="" alt="brand identity icon">
-        </div>
-        <div>
-          <h3>brand identity</h3>
-          <p>I create visual identities that give projects a clear voice and a consistent, memorable look.</p>
-        </div>
-      </div>
-      <div class="card_3">
-        <div>
-          <img src="" alt="web/app design icon">
-        </div>
-        <div>
-          <h3>web/app design</h3>
-          <p>Crafting apps and websites where usability meets creativity - intuitive to use, memorable to explore.</p>
-        </div>
-      </div>
-    </section> -->
-
-
+    
     <section class="expertise" aria-labelledby="expertise-title">
       <h2 id="expertise-title" class="expertise__title">My expertise</h2>
 
@@ -259,7 +223,7 @@
 
         <li class="expertise__item">
           <article class="expertise-card">
-            <img class="expertise-card__icon" src="./src/assets/brand_identity.svg" alt="Brand identity icon">
+            <img class="expertise-card__icon second_icon" src="./src/assets/brand_identity.svg" alt="Brand identity icon">
             <div class="expertise-card__body">
               <h3 class="expertise-card__title">Brand identity</h3>
               <p class="expertise-card__text">

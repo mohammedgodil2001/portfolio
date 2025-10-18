@@ -1,5 +1,3 @@
-// import "../src/css/style.css";
-
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
   $navList.classList.add("abc");
@@ -271,3 +269,189 @@ gsap.registerPlugin(ScrollTrigger);
 
   
     new ClassicSmooth('#scroll-text', '#scroll-main', '#text-container');
+
+
+
+
+
+
+// function initExpertiseAnimation() {
+//   if (window.innerWidth < 900) return;
+
+//   const expertiseSection = document.querySelector('.expertise');
+//   const expertiseCards = gsap.utils.toArray('.expertise-card');
+
+//   ScrollTrigger.getAll().forEach(trigger => {
+//     if (trigger.vars && trigger.vars.trigger === expertiseSection) {
+//       trigger.kill();
+//     }
+//   });
+
+
+//   ScrollTrigger.create({
+//     trigger: expertiseSection,
+//     start: 'top top', // Pin when section reaches top
+//     end: `+=${window.innerHeight * 2}`, // Pin for 2 viewport heights
+//     pin: true, // PIN THE SECTION
+//     scrub: 1,
+//     onUpdate: (self) => {
+//       const progress = self.progress; // 0 to 1
+
+//       expertiseCards.forEach((card, index) => {
+//         const slideInStagger = 0.075;
+//         const xRotationDuration = 0.4;
+//         const xRotationStart = index * slideInStagger;
+//         const xRotationEnd = xRotationStart + xRotationDuration;
+
+//         if (progress >= xRotationStart && progress <= xRotationEnd) {
+//           // Card is animating
+//           const cardProgress = (progress - xRotationStart) / xRotationDuration;
+//           const cardInitialX = 300 - (index * 100);
+//           const cardTargetX = 0;
+//           const cardSlideInX = cardInitialX + (cardProgress * (cardTargetX - cardInitialX));
+//           const cardSlideInRotation = 20 - (cardProgress * 20);
+          
+//           gsap.set(card, {
+//             x: `${cardSlideInX}%`,
+//             rotation: cardSlideInRotation,
+//             scale: 0.75 + (cardProgress * 0.25)
+//           });
+//         } else if (progress > xRotationEnd) {
+//           // Card finished animating - at final position
+//           gsap.set(card, {
+//             x: '0%',
+//             rotation: 0,
+//             scale: 1
+//           });
+//         } else {
+//           // Card hasn't started yet - at initial position
+//           const cardInitialX = 300 - (index * 100);
+//           gsap.set(card, {
+//             x: `${cardInitialX}%`,
+//             rotation: 20,
+//             scale: 0.75
+//           });
+//         }
+//       });
+//     }
+//   });
+// }
+
+
+
+// initExpertiseAnimation();
+
+
+// let resizeTimeout;
+// window.addEventListener('resize', () => {
+//   clearTimeout(resizeTimeout);
+//   resizeTimeout = setTimeout(() => {
+//     initExpertiseAnimation();
+//   }, 300);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Rolling character animation for PROJECTS title
+function initProjectsTitleAnimation() {
+  function splitTextIntoCharsRolling(element) {
+    const text = element.textContent.trim();
+    element.innerHTML = '';
+    
+    const chars = [];
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const charContainer = document.createElement('div');
+      charContainer.style.display = 'inline-block';
+      charContainer.style.overflow = 'hidden';
+      charContainer.style.position = 'relative';
+      charContainer.style.height = '1em';
+      charContainer.style.verticalAlign = 'top';
+      
+      const txt = char === ' ' ? '\u00A0' : char;
+      
+      const wrapper = document.createElement('div');
+      wrapper.className = 'char-wrapper';
+      
+      for (let j = 0; j < 3; j++) {
+        const charItem = document.createElement('div');
+        charItem.className = 'char-item';
+        charItem.textContent = txt;
+        wrapper.appendChild(charItem);
+      }
+      
+      charContainer.appendChild(wrapper);
+      element.appendChild(charContainer);
+      
+      chars.push({ container: charContainer, wrapper: wrapper });
+    }
+    
+    return chars;
+  }
+
+  const projectsTitle = document.querySelector('#projects-title');
+  if (!projectsTitle) return;
+  
+  const chars = splitTextIntoCharsRolling(projectsTitle);
+
+  chars.forEach((charObj, i) => {
+    if (i % 2 !== 0) return;
+    const { wrapper } = charObj;
+    
+    // Alternate direction
+    const direction = i % 2 === 0 ? 1 : -1;
+    
+    // Start at middle position
+    gsap.set(wrapper, {
+      yPercent: -33.333
+    });
+
+    // Animation triggers every time stage reaches center
+    ScrollTrigger.create({
+      trigger: '.projects-title-stage',
+      start: 'center center',
+      end: 'center center',
+      markers: true,
+      onEnter: () => {
+        gsap.fromTo(wrapper, 
+          { yPercent: direction === 1 ? -66.666 : 0 },
+          {
+            yPercent: -33.333,
+            duration: 0.5,
+            delay: i * 0.025,
+            ease: 'power2.out'
+          }
+        );
+      },
+      onEnterBack: () => {
+        gsap.fromTo(wrapper, 
+          { yPercent: direction === 1 ? 0 : -66.666 },
+          {
+            yPercent: -33.333,
+            duration: 0.5,
+            delay: i * 0.025,
+            ease: 'power2.out'
+          }
+        );
+      }
+    });
+  });
+}
+
+// Initialize the animation
+initProjectsTitleAnimation();
