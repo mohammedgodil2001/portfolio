@@ -8,10 +8,14 @@ export const projects = [
     software: 'Adobe Illustrator, Adobe Photoshop, Figma',
     description: 'MixBox is a cocktail subscription brand launching in Antwerp. I designed the full branding and app — a bold, playful identity with a smooth, user-friendly experience that captures the energy of discovering new cocktails every month.',
     images: [
-      './src/assets/projects/mixbox/image_1.svg',
-      './src/assets/projects/mixbox/image_2.svg',
-      './src/assets/projects/mixbox/image_3.svg',
-      './src/assets/projects/mixbox/image_4.png'
+      './src/assets/mixbox_1.webp',
+      './src/assets/mixbox_2.webp',
+      './src/assets/mixbox_3.webp',
+      './src/assets/mixbox_4.webp',
+      './src/assets/mixbox_5.webp',
+      './src/assets/mixbox_6.webp',
+      './src/assets/mixbox_7.webp',
+      './src/assets/mixbox_8.webp',
     ],
     thumbnail: './src/assets/image_1.svg' // For gallery preview
   },
