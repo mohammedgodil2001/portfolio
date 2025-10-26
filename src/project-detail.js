@@ -1,46 +1,3 @@
-// import { projects } from './data/projects.js';
-
-// function loadProjectDetails() {
-//   // Get project ID from URL
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const projectId = urlParams.get('id');
-  
-//   // Find project
-//   const project = projects.find(p => p.id === projectId);
-  
-//   if (!project) {
-//     window.location.href = 'index.html#projects';
-//     return;
-//   }
-  
-//   // Update page title
-//   document.getElementById('project-title').textContent = project.title;
-//   document.title = `${project.title} - Mohammed Godil`;
-  
-//   // Update project details
-//   document.getElementById('detail-title').textContent = project.title;
-//   document.getElementById('detail-focus').textContent = project.focus;
-//   document.getElementById('detail-year').textContent = project.year;
-//   document.getElementById('detail-software').textContent = project.software;
-//   document.getElementById('detail-description').textContent = project.description;
-  
-//   // Populate image gallery
-//   const galleryGrid = document.getElementById('gallery-grid');
-//   project.images.forEach(imageSrc => {
-//     const imgDiv = document.createElement('div');
-//     imgDiv.className = 'gallery-image';
-//     imgDiv.style.backgroundImage = `url('${imageSrc}')`;
-//     galleryGrid.appendChild(imgDiv);
-//   });
-// }
-
-// // document.addEventListener('DOMContentLoaded', loadProjectDetails);
-
-
-// loadProjectDetails();
-
-
-
 import { projects } from './data/projects.js';
 
 function loadProjectDetails() {
@@ -65,21 +22,40 @@ function loadProjectDetails() {
   document.getElementById('detail-software').textContent = project.software;
   document.getElementById('detail-description').textContent = project.description;
   
-  // Populate image gallery with <img> tags
-  const galleryGrid = document.getElementById('gallery-grid');
-  project.images.forEach((imageSrc, index) => {
-    const container = document.createElement('div');
-    container.className = 'gallery-image-container';
-    
+
+// Populate image gallery with <img> tags OR <video> tags
+const galleryGrid = document.getElementById('gallery-grid');
+project.images.forEach((mediaSrc, index) => {
+  const container = document.createElement('div');
+  container.className = 'gallery-image-container';
+  
+
+// Check if it's a video file
+if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov')) {
+  const video = document.createElement('video');
+  video.src = mediaSrc;
+  video.className = 'gallery-image';
+  video.controls = true;  // ← Add controls
+  video.loop = true;
+  video.muted = false;    // ← Allow sound
+  video.playsInline = true;
+  
+  container.appendChild(video);
+}
+  else {
     const img = document.createElement('img');
-    img.src = imageSrc;
+    img.src = mediaSrc;
     img.alt = `${project.title} - Image ${index + 1}`;
     img.className = 'gallery-image';
-    img.loading = 'lazy'; // Lazy load for performance
+    img.loading = 'lazy';
     
     container.appendChild(img);
-    galleryGrid.appendChild(container);
-  });
+  }
+  
+  galleryGrid.appendChild(container);
+});
+
+
 }
 
 document.addEventListener('DOMContentLoaded', loadProjectDetails);
