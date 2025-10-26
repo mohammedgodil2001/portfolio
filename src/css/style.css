@@ -397,18 +397,18 @@ body {
 
 .project-item {
     border-bottom: 2px solid #1636FF;
-    padding: 0.6rem 0;
+    padding: 0.8rem 0;
     cursor: pointer;
 }
 
 .project-name {
     color: #1636FF;
-    /* font-size: 1.75rem; */
     font-size: clamp(1.75rem, 3vw + 1rem, 3.125rem);
     font-style: normal;
     font-weight: 700;
     line-height: 142%;
     letter-spacing: -0.1225rem;
+    text-transform: uppercase;
 }
 
 .project-details {
@@ -495,14 +495,7 @@ body {
   }
 }
 
-/* Add hover effect to project items */
-.project-item {
-  transition: background-color 0.3s ease;
-}
 
-.project-item:hover {
-  background-color: rgba(22, 54, 255, 0.05);
-}
 
 
 

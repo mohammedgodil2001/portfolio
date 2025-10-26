@@ -34,4 +34,57 @@ function loadProjectDetails() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', loadProjectDetails);
+// document.addEventListener('DOMContentLoaded', loadProjectDetails);
+
+
+loadProjectDetails();
+
+
+
+
+
+
+const openNavigation = ($navButton, $navList) => {
+  $navButton.setAttribute("aria-expanded", "true");
+  $navList.classList.add("abc");
+};
+
+const closeNavigation = ($navButton, $navList) => {
+  $navButton.setAttribute("aria-expanded", "false");
+  $navList.classList.remove("abc");
+};
+
+const toggleNavigation = ($navButton, $navList) => {
+  const open = $navButton.getAttribute("aria-expanded");
+  open === "false"
+    ? openNavigation($navButton, $navList)
+    : closeNavigation($navButton, $navList);
+};
+
+const navigation = () => {
+  const $navButton = document.querySelector(".nav__button");
+  const $navList = document.querySelector(".nav__list");
+  const listItems = $navList.querySelectorAll("li a");
+  const closingButton = document.querySelector(".closing__button");
+
+  $navButton.addEventListener("click", () =>
+    toggleNavigation($navButton, $navList)
+  );
+
+  closingButton.addEventListener("click", () =>
+    closeNavigation($navButton, $navList)
+  );
+
+  listItems.forEach((link) => {
+    link.addEventListener("click", () => closeNavigation($navButton, $navList));
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      $navButton.focus();
+      closeNavigation($navButton, $navList);
+    }
+  });
+};
+
+navigation();

@@ -12,19 +12,42 @@
 <body>
   <main>
     <nav class="nav">
-      <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo">
-      <a href="index.html#projects" class="back-link">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Back
-      </a>
-    </nav>
+          <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo">
+          <button class="nav__button" aria-expanded="false" aria-controls="nav-list">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+          </button>
+          <ul class="nav__list" id="nav-list">
+              <div class="cross_and_logo">
+                  <button class="closing__button" aria-label="Close menu">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                  </button>
+              </div>
+              
+              <div class="content_nav">
+                <div class="content_nav_links">
+                  <li class="nav__item"><a href="#about">About</a></li>
+                  <li class="nav__item"><a href="#projects">Projects</a></li>
+                  <li class="nav__item"><a href="#contact">Contact</a></li>
+                </div>
+    
+                <div class="content_nav_logo">
+                  <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="page_logo">
+                </div>
+              </div>
+          </ul>
+      </nav>
 
     <!-- Project Detail Section -->
     <section class="project-detail">
       <div class="project-detail__container">
+        <!-- Back Arrow and Title on separate line -->
         <div class="project-detail__header">
           <a href="index.html#projects" class="back-arrow">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1636FF" stroke-width="2">
@@ -32,25 +55,33 @@
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </a>
-          <h1 class="project-detail__title" id="detail-title">PROJECT TITLE</h1>
         </div>
 
-        <div class="project-detail__info">
-          <div class="info-row">
-            <span class="info-label">Focus</span>
-            <span class="info-value" id="detail-focus">-</span>
+        <!-- Title and Info Side by Side -->
+        <div class="project-detail__content">
+          <!-- Left: Project Title -->
+          <div class="project-detail__title-wrapper">
+            <h1 class="project-detail__title" id="detail-title">PROJECT TITLE</h1>
           </div>
-          <div class="info-row">
-            <span class="info-label">Year</span>
-            <span class="info-value" id="detail-year">-</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Software</span>
-            <span class="info-value" id="detail-software">-</span>
-          </div>
-          <div class="info-row description-row">
-            <span class="info-label">Description</span>
-            <p class="info-description" id="detail-description">-</p>
+
+          <!-- Right: Project Info -->
+          <div class="project-detail__info">
+            <div class="info-row">
+              <span class="info-label">Focus</span>
+              <span class="info-value" id="detail-focus">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Year</span>
+              <span class="info-value" id="detail-year">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Software</span>
+              <span class="info-value" id="detail-software">-</span>
+            </div>
+            <div class="info-row description-row">
+              <span class="info-label">Description</span>
+              <p class="info-description" id="detail-description">-</p>
+            </div>
           </div>
         </div>
       </div>
