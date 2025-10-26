@@ -1,0 +1,168 @@
+/* Project Detail Page Styles */
+.project-detail {
+  background-color: white;
+  padding: 2rem 0;
+  min-height: 50vh;
+}
+
+.project-detail__container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.project-detail__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.back-arrow {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.back-arrow:hover {
+  transform: translateX(-5px);
+}
+
+.project-detail__title {
+  color: #1636FF;
+  font-family: Impact, sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.project-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #1636FF;
+}
+
+.description-row {
+  grid-template-columns: 1fr 2fr;
+  border-bottom: none;
+}
+
+.info-label {
+  color: #1636FF;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.info-value {
+  color: #1636FF;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  text-align: right;
+}
+
+.info-description {
+  color: #1636FF;
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+/* Project Gallery Grid */
+.project-gallery {
+  background-color: white;
+  padding: 4rem 0;
+}
+
+.project-gallery__grid {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1400px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  min-height: 300px;
+}
+
+/* Desktop Layout for Images */
+@media (min-width: 768px) {
+  .project-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* First image spans full width */
+  .gallery-image:nth-child(1) {
+    grid-column: 1 / -1;
+    min-height: 400px;
+  }
+
+  /* If there's a 6th image, it also spans full width */
+  .gallery-image:nth-child(6) {
+    grid-column: 1 / -1;
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 768px) {
+  .info-row {
+    grid-template-columns: 200px 1fr;
+  }
+  
+  .description-row {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .info-value,
+  .info-description {
+    text-align: left;
+  }
+
+  .project-detail__header {
+    flex-direction: column;
+  }
+}
+
+/* Back Link in Nav */
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1636FF;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+  opacity: 0.7;
+}

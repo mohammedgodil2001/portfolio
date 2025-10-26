@@ -43,25 +43,212 @@ const navigation = () => {
 
 navigation();
 
-const expandableProjects = document.querySelectorAll(".expandable-item");
 
-expandableProjects.forEach((project, index) => {
-  const projectBoxes = project.querySelector(".project-boxes");
 
-  project.addEventListener("click", function () {
-    this.classList.toggle("expanded");
-    projectBoxes.classList.toggle("expanded");
+
+
+// Projects Gallery and Expandable Functionality
+// const initProjectsInteraction = () => {
+//   const expandableProjects = document.querySelectorAll(".expandable-item");
+//   const projectsGallery = document.getElementById('projects-gallery');
+//   const projectsGalleryImages = document.getElementById('projects-gallery-images');
+//   const projectsList = document.querySelector('.projects-list');
+//   const imageHeight = 320;
+
+//   // Check if desktop
+//   const isDesktop = () => window.innerWidth >= 1024;
+
+//   // Mobile: Expand functionality
+//   expandableProjects.forEach((project) => {
+//     const projectBoxes = project.querySelector(".project-boxes");
+
+//     project.addEventListener("click", function () {
+//       if (!isDesktop()) {
+//         this.classList.toggle("expanded");
+//         projectBoxes.classList.toggle("expanded");
+//       }
+//     });
+
+//     project.addEventListener("keydown", function (e) {
+//       if ((e.key === "Enter" || e.key === " ") && !isDesktop()) {
+//         e.preventDefault();
+//         this.click();
+//       }
+//     });
+
+//     project.setAttribute("tabindex", "0");
+//   });
+
+//   // Desktop: Hover gallery functionality
+//   if (isDesktop() && projectsGallery && projectsGalleryImages) {
+//     // Hide gallery initially
+//     gsap.set(projectsGallery, { autoAlpha: 0 });
+
+//     // Show/hide gallery
+//     projectsList.addEventListener('mouseenter', () => {
+//       if (isDesktop()) {
+//         gsap.to(projectsGallery, {
+//           autoAlpha: 1,
+//           duration: 0.3,
+//           ease: 'power2.out'
+//         });
+//       }
+//     });
+
+//     projectsList.addEventListener('mouseleave', () => {
+//       gsap.to(projectsGallery, {
+//         autoAlpha: 0,
+//         duration: 0.3,
+//         ease: 'power2.in'
+//       });
+//     });
+
+//     // Move gallery with cursor
+//     window.addEventListener('mousemove', (e) => {
+//       if (isDesktop()) {
+//         gsap.to(projectsGallery, {
+//           top: e.clientY,
+//           left: e.clientX,
+//           xPercent: -20,
+//           yPercent: -50,
+//           duration: 0.4,
+//           ease: 'power2.out'
+//         });
+//       }
+//     });
+
+//     // Change image on project hover
+//     expandableProjects.forEach((project) => {
+//       project.addEventListener('mouseenter', () => {
+//         if (isDesktop()) {
+//           const index = parseInt(project.dataset.index);
+          
+//           gsap.to(projectsGalleryImages, {
+//             y: -imageHeight * index,
+//             duration: 0.6,
+//             ease: 'power3.out'
+//           });
+//         }
+//       });
+//     });
+//   }
+// };
+
+// // Initialize
+// initProjectsInteraction();
+
+
+
+
+
+
+
+// Import project data
+import { projects } from './data/projects.js';
+
+const initProjectsInteraction = () => {
+  const expandableProjects = document.querySelectorAll(".expandable-item");
+  const projectsGallery = document.getElementById('projects-gallery');
+  const projectsGalleryImages = document.getElementById('projects-gallery-images');
+  const projectsList = document.querySelector('.projects-list');
+  const imageHeight = 320;
+
+  // Check if desktop
+  const isDesktop = () => window.innerWidth >= 1024;
+
+  // Handle project clicks - navigate to detail page
+  expandableProjects.forEach((project) => {
+    const projectBoxes = project.querySelector(".project-boxes");
+    
+    // Get project ID from data attribute
+    const projectIndex = parseInt(project.dataset.index);
+    const projectData = projects[projectIndex];
+    
+    if (!projectData) return;
+
+    // Click handler for navigation
+    project.addEventListener("click", function (e) {
+      // Navigate to project detail page
+      window.location.href = `project-template.html?id=${projectData.id}`;
+    });
+
+    // Keyboard accessibility
+    project.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        window.location.href = `project-template.html?id=${projectData.id}`;
+      }
+    });
+
+    project.setAttribute("tabindex", "0");
   });
 
-  project.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      this.click();
-    }
-  });
+  // Desktop: Hover gallery functionality
+  if (isDesktop() && projectsGallery && projectsGalleryImages) {
+    // Hide gallery initially
+    gsap.set(projectsGallery, { autoAlpha: 0 });
 
-  project.setAttribute("tabindex", "0");
-});
+    // Show/hide gallery
+    projectsList.addEventListener('mouseenter', () => {
+      if (isDesktop()) {
+        gsap.to(projectsGallery, {
+          autoAlpha: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    projectsList.addEventListener('mouseleave', () => {
+      gsap.to(projectsGallery, {
+        autoAlpha: 0,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+    });
+
+    // Move gallery with cursor
+    window.addEventListener('mousemove', (e) => {
+      if (isDesktop()) {
+        gsap.to(projectsGallery, {
+          top: e.clientY,
+          left: e.clientX,
+          xPercent: -20,
+          yPercent: -50,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    // Change image on project hover
+    expandableProjects.forEach((project) => {
+      project.addEventListener('mouseenter', () => {
+        if (isDesktop()) {
+          const index = parseInt(project.dataset.index);
+          
+          gsap.to(projectsGalleryImages, {
+            y: -imageHeight * index,
+            duration: 0.6,
+            ease: 'power3.out'
+          });
+        }
+      });
+    });
+  }
+};
+
+// Initialize
+initProjectsInteraction();
+
+
+
+
+
+
+
+
+
 
 function initDraggableNotes(
   containerSelector = ".stack",
@@ -123,152 +310,152 @@ initDraggableNotes();
 
 gsap.registerPlugin(ScrollTrigger);
 
-    // Request animation frame loop
-    const raf = (time) => {
-        requestAnimationFrame(raf);
-    };
+// Request animation frame loop
+const raf = (time) => {
     requestAnimationFrame(raf);
+};
+requestAnimationFrame(raf);
 
-    // Split text into individual character spans
-    const splitTextIntoChars = (element) => {
-        const text = element.textContent;
-        element.innerHTML = '';
-        
-        const chars = [];
-        for (let i = 0; i < text.length; i++) {
-            const char = text[i];
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.style.display = 'inline-block';
-            element.appendChild(span);
-            chars.push(span);
-        }
-        
-        return chars;
+// Split text into individual character spans
+const splitTextIntoChars = (element) => {
+    const text = element.textContent;
+    element.innerHTML = '';
+    
+    const chars = [];
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.display = 'inline-block';
+        element.appendChild(span);
+        chars.push(span);
+    }
+    
+    return chars;
+};
+
+// Debounce utility function
+const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
     };
+};
 
-    // Debounce utility function
-    const debounce = (func, delay) => {
-        let timeout;
-        return (...args) => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func(...args), delay);
-        };
-    };
+// Main animation class
+class ClassicSmooth {
+    constructor(textSelector, mainSelector, textConSelector) {
+        this.textRef = document.querySelector(textSelector);
+        this.mainRef = document.querySelector(mainSelector);
+        this.textConRef = document.querySelector(textConSelector);
+        this.scrollTween = null;
+        this.characters = [];
+        this.isMobile = window.innerWidth < 768;
+        
+        this.init();
+    }
 
-    // Main animation class
-    class ClassicSmooth {
-        constructor(textSelector, mainSelector, textConSelector) {
-            this.textRef = document.querySelector(textSelector);
-            this.mainRef = document.querySelector(mainSelector);
-            this.textConRef = document.querySelector(textConSelector);
-            this.scrollTween = null;
-            this.characters = [];
-            this.isMobile = window.innerWidth < 768;
-            
-            this.init();
+    init() {
+        if (!this.textRef || !this.mainRef || !this.textConRef) {
+            console.error('[ClassicSmooth] Required elements not found');
+            return;
         }
 
-        init() {
-            if (!this.textRef || !this.mainRef || !this.textConRef) {
-                console.error('[ClassicSmooth] Required elements not found');
-                return;
-            }
-
-            // Only run animation on desktop
-            if (!this.isMobile) {
-                this.initAnimation();
-            }
-            
-            this.setupResize();
+        // Only run animation on desktop
+        if (!this.isMobile) {
+            this.initAnimation();
         }
+        
+        this.setupResize();
+    }
 
-        initAnimation() {
-            this.characters = splitTextIntoChars(this.textRef);
-            const scrub = 0.5;
+    initAnimation() {
+        this.characters = splitTextIntoChars(this.textRef);
+        const scrub = 0.5;
 
-            // Set initial position - text starts off-screen to the right
-            gsap.set(this.textConRef, { 
-                x: window.innerWidth * 1.1,
+        // Set initial position - text starts off-screen to the right
+        gsap.set(this.textConRef, { 
+            x: window.innerWidth * 1.1,
+            willChange: 'transform' 
+        });
+
+        // Calculate the full width of text
+        const textWidth = this.textConRef.offsetWidth;
+        
+        // Calculate the total distance text needs to travel
+        // From right edge of screen to completely off the left edge
+        const totalDistance = window.innerWidth + textWidth;
+        
+        // Main horizontal scroll animation with PIN enabled
+        this.scrollTween = gsap.to(this.textConRef, {
+            x: -textWidth - 200, // Extra padding to ensure complete scroll
+            ease: 'none',
+            scrollTrigger: {
+                trigger: this.mainRef,
+                pin: true, // PIN THE SECTION - keeps it locked while animating
+                start: 'top top',
+                end: () => `+=${totalDistance * 1}`, // Scroll distance needed
+                scrub: scrub,
+                invalidateOnRefresh: true,
+                anticipatePin: 1
+            }
+        });
+
+        // Animate each character individually
+        this.characters.forEach((char, index) => {
+            // Set initial character state - rotated and positioned above
+            gsap.set(char, { 
+                rotate: 45,
+                y: -180,
                 willChange: 'transform' 
             });
 
-            // Calculate the full width of text
-            const textWidth = this.textConRef.offsetWidth;
-            
-            // Calculate the total distance text needs to travel
-            // From right edge of screen to completely off the left edge
-            const totalDistance = window.innerWidth + textWidth;
-            
-            // Main horizontal scroll animation with PIN enabled
-            this.scrollTween = gsap.to(this.textConRef, {
-                x: -textWidth - 200, // Extra padding to ensure complete scroll
-                ease: 'none',
+            // Create timeline for each character animation
+            const tl = gsap.timeline({
+                defaults: { ease: 'none' },
                 scrollTrigger: {
-                    trigger: this.mainRef,
-                    pin: true, // PIN THE SECTION - keeps it locked while animating
-                    start: 'top top',
-                    end: () => `+=${totalDistance * 1}`, // Scroll distance needed
-                    scrub: scrub,
+                    trigger: char,
+                    start: 'left 85%',
+                    end: 'left 25%',
+                    containerAnimation: this.scrollTween,
+                    scrub: 0.3,
                     invalidateOnRefresh: true,
-                    anticipatePin: 1
                 }
             });
 
-            // Animate each character individually
-            this.characters.forEach((char, index) => {
-                // Set initial character state - rotated and positioned above
-                gsap.set(char, { 
-                    rotate: 45,
-                    y: -180,
-                    willChange: 'transform' 
-                });
-
-                // Create timeline for each character animation
-                const tl = gsap.timeline({
-                    defaults: { ease: 'none' },
-                    scrollTrigger: {
-                        trigger: char,
-                        start: 'left 85%',
-                        end: 'left 25%',
-                        containerAnimation: this.scrollTween,
-                        scrub: 0.3,
-                        invalidateOnRefresh: true,
-                    }
-                });
-
-                // Animate character to final position
-                tl.to(char, {
-                    rotate: 0,
-                    y: 0,
-                    duration: 1
-                });
+            // Animate character to final position
+            tl.to(char, {
+                rotate: 0,
+                y: 0,
+                duration: 1
             });
+        });
 
-            console.log('[ClassicSmooth] Animation initialized with', this.characters.length, 'characters');
-            console.log('[ClassicSmooth] Text width:', textWidth, 'Total distance:', totalDistance);
-        }
-
-        setupResize() {
-            const handleResize = debounce(() => {
-                const wasMobile = this.isMobile;
-                this.isMobile = window.innerWidth < 768;
-                
-                // Reload if switching between mobile/desktop
-                if (wasMobile !== this.isMobile) {
-                    window.location.reload();
-                } else {
-                    console.log('[ClassicSmooth] Refreshing ScrollTrigger on resize');
-                    ScrollTrigger.refresh();
-                }
-            }, 600);
-
-            window.addEventListener('resize', handleResize);
-        }
+        console.log('[ClassicSmooth] Animation initialized with', this.characters.length, 'characters');
+        console.log('[ClassicSmooth] Text width:', textWidth, 'Total distance:', totalDistance);
     }
 
-  
-    new ClassicSmooth('#scroll-text', '#scroll-main', '#text-container');
+    setupResize() {
+        const handleResize = debounce(() => {
+            const wasMobile = this.isMobile;
+            this.isMobile = window.innerWidth < 768;
+            
+            // Reload if switching between mobile/desktop
+            if (wasMobile !== this.isMobile) {
+                window.location.reload();
+            } else {
+                console.log('[ClassicSmooth] Refreshing ScrollTrigger on resize');
+                ScrollTrigger.refresh();
+            }
+        }, 600);
+
+        window.addEventListener('resize', handleResize);
+    }
+}
+
+
+new ClassicSmooth('#scroll-text', '#scroll-main', '#text-container');
 
 
 
@@ -358,17 +545,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-
-
-
-
-
-
-
-
-
 // Rolling character animation for PROJECTS title
-function initProjectsTitleAnimation() {
+const initProjectsTitleAnimation = () => {
   function splitTextIntoCharsRolling(element) {
     const text = element.textContent.trim();
     element.innerHTML = '';
@@ -421,12 +599,12 @@ function initProjectsTitleAnimation() {
       yPercent: -33.333
     });
 
-    // Animation triggers every time stage reaches center
+    
     ScrollTrigger.create({
       trigger: '.projects-title-stage',
       start: 'center center',
       end: 'center center',
-      markers: true,
+      // markers: true,
       onEnter: () => {
         gsap.fromTo(wrapper, 
           { yPercent: direction === 1 ? -66.666 : 0 },
@@ -453,5 +631,13 @@ function initProjectsTitleAnimation() {
   });
 }
 
-// Initialize the animation
 initProjectsTitleAnimation();
+
+
+
+
+
+
+
+
+

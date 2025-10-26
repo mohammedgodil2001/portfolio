@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="project-title">Project</title>
+    <link rel="stylesheet" href="https://use.typekit.net/pwy4wuq.css">
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/project-template.css">
+</head>
+<body>
+  <main>
+    <nav class="nav">
+      <img src="./src/assets/muhammed_logo.svg" alt="Mohammed Logo" class="header__logo">
+      <a href="index.html#projects" class="back-link">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back
+      </a>
+    </nav>
+
+    <!-- Project Detail Section -->
+    <section class="project-detail">
+      <div class="project-detail__container">
+        <div class="project-detail__header">
+          <a href="index.html#projects" class="back-arrow">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1636FF" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </a>
+          <h1 class="project-detail__title" id="detail-title">PROJECT TITLE</h1>
+        </div>
+
+        <div class="project-detail__info">
+          <div class="info-row">
+            <span class="info-label">Focus</span>
+            <span class="info-value" id="detail-focus">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Year</span>
+            <span class="info-value" id="detail-year">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Software</span>
+            <span class="info-value" id="detail-software">-</span>
+          </div>
+          <div class="info-row description-row">
+            <span class="info-label">Description</span>
+            <p class="info-description" id="detail-description">-</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Images Gallery -->
+    <section class="project-gallery">
+      <div class="project-gallery__grid" id="gallery-grid">
+        <!-- Images will be populated dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./src/project-detail.js"></script>
+</body>
+</html>
