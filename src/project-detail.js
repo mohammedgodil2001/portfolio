@@ -16,11 +16,39 @@ function loadProjectDetails() {
   document.title = `${project.title} - Mohammed Godil`;
   
   // Update project details
-  document.getElementById('detail-title').innerHTML = project.title;
-  document.getElementById('detail-focus').textContent = project.focus;
-  document.getElementById('detail-year').textContent = project.year;
+//   document.getElementById('detail-title').innerHTML = project.title;
+//   document.getElementById('detail-focus').textContent = project.focus;
+//   document.getElementById('detail-year').textContent = project.year;
+//   document.getElementById('detail-software').textContent = project.software;
+//   document.getElementById('detail-description').textContent = project.description;
+
+
+// Update project details
+document.getElementById('detail-title').innerHTML = project.title;
+document.getElementById('detail-focus').textContent = project.focus;
+document.getElementById('detail-year').textContent = project.year;
+document.getElementById('detail-description').textContent = project.description;
+
+// Update software/technologies label AND value based on category
+const techLabel = document.getElementById('tech-label');
+if (project.category === 'design') {
+  techLabel.textContent = 'Software';
   document.getElementById('detail-software').textContent = project.software;
-  document.getElementById('detail-description').textContent = project.description;
+} else if (project.category === 'coding') {
+  techLabel.textContent = 'Technologies';
+  document.getElementById('detail-software').textContent = project.technologies;
+}
+
+// Show "See the project" button if liveUrl exists
+const liveButton = document.getElementById('live-project-button');
+if (project.liveUrl) {
+  liveButton.href = project.liveUrl;
+  liveButton.style.display = 'inline-block';
+} else {
+  liveButton.style.display = 'none';
+}
+
+   
   
 
 // Populate image gallery with <img> tags OR <video> tags
@@ -58,8 +86,8 @@ if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith
 
 }
 
-document.addEventListener('DOMContentLoaded', loadProjectDetails);
 
+loadProjectDetails();
 
 
 

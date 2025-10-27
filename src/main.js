@@ -167,10 +167,37 @@ const initProjectsInteraction = () => {
     if (!projectData) return;
 
     // Click handler for navigation
-    project.addEventListener("click", function (e) {
-      // Navigate to project detail page
-      window.location.href = `project-template.html?id=${projectData.id}`;
+    // project.addEventListener("click", function (e) {
+    //   // Navigate to project detail page
+    //   window.location.href = `project-template.html?id=${projectData.id}`;
+    // });
+
+
+    // Map data-index to project IDs
+    const projectMap = {
+      0: 'mixbox',
+      1: 'menu-design',
+      2: 'flower-workshop',
+      3: 'kickstarter',
+      4: 'webrtc-smoothie-maker',
+      5: 'generative-poster-tool',
+      6: 'photo-booth-app'
+    };
+
+    // Add click handlers to all projects
+    const projectItems = document.querySelectorAll('.project-item');
+    projectItems.forEach((project) => {
+      project.addEventListener('click', function() {
+        const index = this.getAttribute('data-index');
+        const projectId = projectMap[index];
+        
+        if (projectId) {
+          window.location.href = `project-template.html?id=${projectId}`;
+        }
+      });
     });
+
+
 
     // Keyboard accessibility
     project.addEventListener("keydown", function (e) {
@@ -641,3 +668,75 @@ initProjectsTitleAnimation();
 
 
 
+// ===== SMOOTH SCROLLING SETUP =====
+const initSmoothScrolling = () => {
+  const lenis = new Lenis({ 
+    lerp: 0.15,
+    smoothWheel: true
+  });
+  
+  // Sync ScrollTrigger with Lenis
+  lenis.on('scroll', ScrollTrigger.update);
+  
+  // Sync GSAP ticker with Lenis
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  
+  // Turn off GSAP's lag smoothing
+  gsap.ticker.lagSmoothing(0);
+};
+
+// ===== EXPERTISE SECTION ANIMATION =====
+const animateExpertiseSection = () => {
+  const section = document.querySelector('[data-grid-expertise]');
+  
+  // Exit if section doesn't exist
+  if (!section) return;
+  
+  const cards = section.querySelectorAll('.expertise__item');
+  const title = section.querySelector('.expertise__title');
+  const middleIndex = Math.floor(cards.length / 2);
+
+  // Create animation timeline
+  gsap.timeline({
+    defaults: {
+      ease: 'power3'
+    },
+    scrollTrigger: {
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
+      scrub: 0.5,
+    }
+  })
+  // Animate title
+  .from(title, {
+    yPercent: 50,
+    autoAlpha: 0,
+    duration: 0.3
+  })
+  // Animate cards from center with rotation
+  .from(cards, {
+    stagger: {
+      amount: 0.3,
+      from: 'center'
+    },
+    y: window.innerHeight * 0.5,
+    transformOrigin: '50% 0%',
+    rotation: (pos) => {
+      const distanceFromCenter = Math.abs(pos - middleIndex);
+      return pos < middleIndex ? distanceFromCenter * 3 : distanceFromCenter * -3;
+    },
+    autoAlpha: 0
+  }, 0.2);
+};
+
+// ===== INITIALIZE ANIMATIONS =====
+const initGSAPAnimations = () => {
+  initSmoothScrolling();
+  animateExpertiseSection();
+};
+
+// Initialize on page load
+window.addEventListener('load', initGSAPAnimations);

@@ -74,5 +74,53 @@ export const projects = [
          './src/assets/kickstarter-campaign_6.svg',
     ],
     thumbnail: './src/assets/image_4.png'
-  }
+  },
+
+
+  // CODING PROJECTS
+{
+  id: 'generative-poster-tool',
+  title: 'GENERATIVE POSTER TOOL',
+  category: 'coding',
+  focus: 'Creative Coding & Interactive Design',
+  year: '2025',
+  technologies: 'JavaScript, Three.js, WebGL, GLSL',
+  description: 'I built an interactive web tool that lets users create their own generative posters in real time. It uses shaders and 3D graphics to make unique abstract visuals that constantly change and react as you design. The goal was to mix art and code — giving users full creative control to experiment and create something different every time.',
+  thumbnail: './src/assets/posters_2.webp',
+  liveUrl: 'https://shaders-assignemnt.vercel.app/',
+  images: [
+      './src/assets/posters_2.webp',
+   './src/assets/posters_1.mp4',
+  ]
+},
+{
+  id: 'photo-booth-app',
+  title: 'PHOTO BOOTH APP',
+  category: 'coding',
+  focus: 'Mobile App & UI Design',
+  year: '2025',
+  technologies: 'React Native, Expo SDK, TypeScript, Zustand, JavaScript',
+  description: 'A native mobile photo booth app that lets users capture or upload photos, customize them with filters, colors, and text, and save photostrips straight to their gallery. Inspired by vintage photo booths, it combines playful design with modern camera features — built using React Native and Expo to showcase smooth native performance on both iOS and Android.',
+  thumbnail: './assets/images/photo-booth-thumb.jpg',
+  images: [
+      './src/assets/photoBooth_2.webp',
+    './src/assets/photoBooth_1.mp4',
+  ]
+},
+{
+  id: 'webrtc-smoothie-maker',
+  title: 'WEBRTC SMOOTHIE MAKER',
+  category: 'coding',
+  focus: 'Creative Coding & Real-Time Interaction',
+  year: '2025',
+  technologies: 'WebRTC, Socket.IO, GSAP, Device Motion API, JavaScript',
+  description: 'A real-time interactive project where users can control a virtual blender on their phone. After scanning a QR code, the phone connects directly to the desktop. No data stored, just a smooth peer-to-peer connection. Users can pick fruits on their phone, see them appear instantly in the blender on screen, shake to blend, and tap to pour the smoothie into a glass. Built with WebRTC, Socket.IO, and GSAP for a fun and seamless experience.',
+  thumbnail: './src/assets/image_7.svg',
+  images: [
+    './src/assets/WebRtc_1.mp4',
+  ]
+}
+
+
+
 ];
