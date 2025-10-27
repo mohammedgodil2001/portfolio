@@ -140,7 +140,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 }
 
@@ -160,23 +160,24 @@
   
   .gallery-image-container:nth-child(3),
   .gallery-image-container:nth-child(4) {
-    height: 400px; 
+    /* height: 400px;  */
   }
 
   
   .gallery-image-container:nth-child(5),
   .gallery-image-container:nth-child(6) {
-    height: 400px; /
+    /* height: 400px;  */
   }
 
 
-  .gallery-image-container:nth-child(7) {
+  .gallery-image-container:nth-child(7),
+  .gallery-image-container:nth-child(10) {
     grid-column: 1 / -1;
   }
 
     .gallery-image-container:nth-child(8),
   .gallery-image-container:nth-child(9) {
-    height: 400px; /
+    /* height: 400px;  */
   }
 
 }
@@ -189,7 +190,7 @@
   .gallery-image-container:nth-child(8),
   .gallery-image-container:nth-child(9)
   {
-    height: 500px;
+    /* height: 500px; */
   }
 }
 
@@ -226,13 +227,13 @@
   /* First image spans full width */
   .gallery-image:nth-child(1) {
     grid-column: 1 / -1;
-    min-height: 400px;
+    /* min-height: 400px; */
   }
 
   /* If there's a 6th image, it also spans full width */
   .gallery-image:nth-child(6) {
     grid-column: 1 / -1;
-    min-height: 400px;
+    /* min-height: 400px; */
   }
 }
 

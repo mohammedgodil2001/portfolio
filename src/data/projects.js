@@ -44,6 +44,7 @@ export const projects = [
     software: 'Adobe Illustrator, Figma',
     description: 'For Flower Workshop, I designed an interactive booking form that feels more like an experience than a task. I created custom illustrations, playful animations, and unique layouts to make the process engaging and easy to follow. The goal was to keep users interested and guide them smoothly through each step, turning a usually boring form into something fun and memorable.',
     images: [
+     './src/assets/flower-workshop_1.mp4',
      './src/assets/flower-workshop_2.svg',
      './src/assets/flower-workshop_3.svg',
      './src/assets/flower-workshop_4.svg',

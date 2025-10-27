@@ -488,6 +488,7 @@ body {
   background-position: center;
 }
 
+
 /* Hide gallery on mobile */
 @media (max-width: 1023px) {
   #projects-gallery {
@@ -752,7 +753,7 @@ body {
     }
 
     .cross_and_logo {
-        display: none;
+        display: none
     }
 
     .nav__item {
