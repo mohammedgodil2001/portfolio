@@ -48,7 +48,7 @@ navigation();
 
 
 // Import project data
-import { projects } from './data/projects.js';
+import { projects } from '../public/data/projects.js';
 
 const initProjectsInteraction = () => {
   const expandableProjects = document.querySelectorAll(".expandable-item");
