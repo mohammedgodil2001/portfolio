@@ -1,3 +1,5 @@
+import { BlurScrollEffect } from './blurScrollEffect.js';
+
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
   $navList.classList.add("abc");
@@ -792,3 +794,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+const aboutText = document.querySelector('[data-blur-effect]');
+  if (aboutText) {
+    new BlurScrollEffect(aboutText);
+  }
