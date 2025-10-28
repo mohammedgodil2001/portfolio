@@ -89,8 +89,8 @@ export const projects = [
   thumbnail: './src/assets/posters_2.webp',
   liveUrl: 'https://shaders-assignemnt.vercel.app/',
   images: [
-      './src/assets/posters_2.webp',
-   './src/assets/posters_1.mp4',
+      '/assets/posters_2.webp',
+   '/assets/posters_1.mp4',
   ]
 },
 {
