@@ -1,3 +1,4 @@
+import * as ogl from 'ogl';
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
   $navList.classList.add("abc");
