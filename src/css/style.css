@@ -890,6 +890,11 @@ body {
     z-index: 10;
     height: 100vh;
     width: 100%;
+    position: relative;
+}
+
+.detail_footer{
+    margin-top: 2rem;
 }
 
 .footer-container {
