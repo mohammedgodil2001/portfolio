@@ -1,4 +1,4 @@
-import { projects } from './data/projects.js';
+import { projects } from '../src/data/projects.js';
 
 function loadProjectDetails() {
   const urlParams = new URLSearchParams(window.location.search);
