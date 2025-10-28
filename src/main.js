@@ -46,103 +46,6 @@ navigation();
 
 
 
-
-// Projects Gallery and Expandable Functionality
-// const initProjectsInteraction = () => {
-//   const expandableProjects = document.querySelectorAll(".expandable-item");
-//   const projectsGallery = document.getElementById('projects-gallery');
-//   const projectsGalleryImages = document.getElementById('projects-gallery-images');
-//   const projectsList = document.querySelector('.projects-list');
-//   const imageHeight = 320;
-
-//   // Check if desktop
-//   const isDesktop = () => window.innerWidth >= 1024;
-
-//   // Mobile: Expand functionality
-//   expandableProjects.forEach((project) => {
-//     const projectBoxes = project.querySelector(".project-boxes");
-
-//     project.addEventListener("click", function () {
-//       if (!isDesktop()) {
-//         this.classList.toggle("expanded");
-//         projectBoxes.classList.toggle("expanded");
-//       }
-//     });
-
-//     project.addEventListener("keydown", function (e) {
-//       if ((e.key === "Enter" || e.key === " ") && !isDesktop()) {
-//         e.preventDefault();
-//         this.click();
-//       }
-//     });
-
-//     project.setAttribute("tabindex", "0");
-//   });
-
-//   // Desktop: Hover gallery functionality
-//   if (isDesktop() && projectsGallery && projectsGalleryImages) {
-//     // Hide gallery initially
-//     gsap.set(projectsGallery, { autoAlpha: 0 });
-
-//     // Show/hide gallery
-//     projectsList.addEventListener('mouseenter', () => {
-//       if (isDesktop()) {
-//         gsap.to(projectsGallery, {
-//           autoAlpha: 1,
-//           duration: 0.3,
-//           ease: 'power2.out'
-//         });
-//       }
-//     });
-
-//     projectsList.addEventListener('mouseleave', () => {
-//       gsap.to(projectsGallery, {
-//         autoAlpha: 0,
-//         duration: 0.3,
-//         ease: 'power2.in'
-//       });
-//     });
-
-//     // Move gallery with cursor
-//     window.addEventListener('mousemove', (e) => {
-//       if (isDesktop()) {
-//         gsap.to(projectsGallery, {
-//           top: e.clientY,
-//           left: e.clientX,
-//           xPercent: -20,
-//           yPercent: -50,
-//           duration: 0.4,
-//           ease: 'power2.out'
-//         });
-//       }
-//     });
-
-//     // Change image on project hover
-//     expandableProjects.forEach((project) => {
-//       project.addEventListener('mouseenter', () => {
-//         if (isDesktop()) {
-//           const index = parseInt(project.dataset.index);
-          
-//           gsap.to(projectsGalleryImages, {
-//             y: -imageHeight * index,
-//             duration: 0.6,
-//             ease: 'power3.out'
-//           });
-//         }
-//       });
-//     });
-//   }
-// };
-
-// // Initialize
-// initProjectsInteraction();
-
-
-
-
-
-
-
 // Import project data
 import { projects } from './data/projects.js';
 
@@ -166,11 +69,7 @@ const initProjectsInteraction = () => {
     
     if (!projectData) return;
 
-    // Click handler for navigation
-    // project.addEventListener("click", function (e) {
-    //   // Navigate to project detail page
-    //   window.location.href = `project-template.html?id=${projectData.id}`;
-    // });
+ 
 
 
     // Map data-index to project IDs
@@ -487,91 +386,6 @@ new ClassicSmooth('#scroll-text', '#scroll-main', '#text-container');
 
 
 
-
-
-// function initExpertiseAnimation() {
-//   if (window.innerWidth < 900) return;
-
-//   const expertiseSection = document.querySelector('.expertise');
-//   const expertiseCards = gsap.utils.toArray('.expertise-card');
-
-//   ScrollTrigger.getAll().forEach(trigger => {
-//     if (trigger.vars && trigger.vars.trigger === expertiseSection) {
-//       trigger.kill();
-//     }
-//   });
-
-
-//   ScrollTrigger.create({
-//     trigger: expertiseSection,
-//     start: 'top top', // Pin when section reaches top
-//     end: `+=${window.innerHeight * 2}`, // Pin for 2 viewport heights
-//     pin: true, // PIN THE SECTION
-//     scrub: 1,
-//     onUpdate: (self) => {
-//       const progress = self.progress; // 0 to 1
-
-//       expertiseCards.forEach((card, index) => {
-//         const slideInStagger = 0.075;
-//         const xRotationDuration = 0.4;
-//         const xRotationStart = index * slideInStagger;
-//         const xRotationEnd = xRotationStart + xRotationDuration;
-
-//         if (progress >= xRotationStart && progress <= xRotationEnd) {
-//           // Card is animating
-//           const cardProgress = (progress - xRotationStart) / xRotationDuration;
-//           const cardInitialX = 300 - (index * 100);
-//           const cardTargetX = 0;
-//           const cardSlideInX = cardInitialX + (cardProgress * (cardTargetX - cardInitialX));
-//           const cardSlideInRotation = 20 - (cardProgress * 20);
-          
-//           gsap.set(card, {
-//             x: `${cardSlideInX}%`,
-//             rotation: cardSlideInRotation,
-//             scale: 0.75 + (cardProgress * 0.25)
-//           });
-//         } else if (progress > xRotationEnd) {
-//           // Card finished animating - at final position
-//           gsap.set(card, {
-//             x: '0%',
-//             rotation: 0,
-//             scale: 1
-//           });
-//         } else {
-//           // Card hasn't started yet - at initial position
-//           const cardInitialX = 300 - (index * 100);
-//           gsap.set(card, {
-//             x: `${cardInitialX}%`,
-//             rotation: 20,
-//             scale: 0.75
-//           });
-//         }
-//       });
-//     }
-//   });
-// }
-
-
-
-// initExpertiseAnimation();
-
-
-// let resizeTimeout;
-// window.addEventListener('resize', () => {
-//   clearTimeout(resizeTimeout);
-//   resizeTimeout = setTimeout(() => {
-//     initExpertiseAnimation();
-//   }, 300);
-// });
-
-
-
-
-
-
-
-
-
 // Rolling character animation for PROJECTS title
 const initProjectsTitleAnimation = () => {
   function splitTextIntoCharsRolling(element) {
@@ -687,12 +501,16 @@ const initSmoothScrolling = () => {
   gsap.ticker.lagSmoothing(0);
 };
 
+
+
 // ===== EXPERTISE SECTION ANIMATION =====
 const animateExpertiseSection = () => {
   const section = document.querySelector('[data-grid-expertise]');
   
   // Exit if section doesn't exist
   if (!section) return;
+
+  if (window.innerWidth < 900) return;
   
   const cards = section.querySelectorAll('.expertise__item');
   const title = section.querySelector('.expertise__title');
@@ -705,9 +523,10 @@ const animateExpertiseSection = () => {
     },
     scrollTrigger: {
       trigger: section,
-      start: 'top center',
-      end: 'bottom center',
+      start: 'top top',
+      end: 'bottom bottom',
       scrub: 0.5,
+      // markers: true
     }
   })
   // Animate title
@@ -718,8 +537,10 @@ const animateExpertiseSection = () => {
   })
   // Animate cards from center with rotation
   .from(cards, {
+    duration: 1.2,
     stagger: {
       amount: 0.3,
+      // each: 0.25,
       from: 'center'
     },
     y: window.innerHeight * 0.5,
@@ -732,6 +553,12 @@ const animateExpertiseSection = () => {
   }, 0.2);
 };
 
+
+
+
+
+
+
 // ===== INITIALIZE ANIMATIONS =====
 const initGSAPAnimations = () => {
   initSmoothScrolling();
@@ -739,4 +566,229 @@ const initGSAPAnimations = () => {
 };
 
 // Initialize on page load
-window.addEventListener('load', initGSAPAnimations);
+// At the very end of fluid-effect.js
+
+initGSAPAnimations();
+
+
+
+
+
+// Initialize after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+
+  if (window.innerWidth < 1030) {
+    // Show the regular image on mobile/tablet
+    
+    return;
+  }
+
+
+  let imgSize = [1600, 1200];
+
+  const vertex = `
+    attribute vec2 uv;
+    attribute vec2 position;
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = vec4(position, 0, 1);
+    }
+  `;
+
+  const fragment = `
+    precision highp float;
+    precision highp int;
+    uniform sampler2D tWater;
+    uniform sampler2D tFlow;
+    uniform float uTime;
+    varying vec2 vUv;
+    uniform vec4 res;
+
+    void main() {
+      vec3 flow = texture2D(tFlow, vUv).rgb;
+      vec2 uv = .5 * gl_FragCoord.xy / res.xy;
+      vec2 myUV = (uv - vec2(0.5))*res.zw + vec2(0.5);
+      myUV -= flow.xy * (0.25 * 0.7);
+      vec4 tex = texture2D(tWater, myUV);
+      gl_FragColor = vec4(tex.rgb, tex.a);
+    }
+  `;
+
+  const renderer = new ogl.Renderer({
+    dpr: 2,
+    alpha: true,
+    premultipliedAlpha: true
+  });
+  
+  const gl = renderer.gl;
+  gl.canvas.classList.add("fluid-canvas");
+  
+  // Insert canvas into hero-section__intro
+  const introSection = document.querySelector('.hero-section__intro');
+  if (introSection) {
+    introSection.style.position = 'relative';
+    introSection.appendChild(gl.canvas);
+    
+    // Hide the original img
+    const originalImg = introSection.querySelector('img');
+    if (originalImg) {
+      originalImg.style.display = 'none';
+    }
+  }
+
+  const isTouchCapable = "ontouchstart" in window;
+  let aspect = 1;
+  const mouse = new ogl.Vec2(-1);
+  const velocity = new ogl.Vec2();
+
+  function resize() {
+    let a1, a2;
+    var imageAspect = imgSize[1] / imgSize[0];
+    
+    // Get the intro section dimensions
+    const container = document.querySelector('.hero-section__intro');
+    const containerWidth = container ? container.offsetWidth : window.innerWidth;
+    const containerHeight = container ? container.offsetHeight : window.innerHeight;
+    
+    if (containerHeight / containerWidth < imageAspect) {
+      a1 = 1;
+      a2 = containerHeight / containerWidth / imageAspect;
+    } else {
+      a1 = (containerWidth / containerHeight) * imageAspect;
+      a2 = 1;
+    }
+    
+    mesh.program.uniforms.res.value = new ogl.Vec4(
+      containerWidth,
+      containerHeight,
+      a1,
+      a2
+    );
+
+    renderer.setSize(containerWidth, containerHeight);
+    aspect = containerWidth / containerHeight;
+  }
+
+  // const flowmap = new ogl.Flowmap(gl, { falloff: 0.2, dissipation: 0.9 });
+
+
+  const flowmap = new ogl.Flowmap(gl, { falloff: 0.3, dissipation: 0.92 });
+  
+  const geometry = new ogl.Geometry(gl, {
+    position: {
+      size: 2,
+      data: new Float32Array([-1, -1, 3, -1, -1, 3])
+    },
+    uv: { size: 2, data: new Float32Array([0, 0, 2, 0, 0, 2]) }
+  });
+
+  const texture = new ogl.Texture(gl, {
+    minFilter: gl.LINEAR,
+    magFilter: gl.LINEAR,
+    premultiplyAlpha: true
+  });
+
+  const img = new Image();
+  img.onload = () => {
+    texture.image = img;
+    resize();
+  };
+  img.crossOrigin = "Anonymous";
+  img.src = "./src/assets/my_name_1.svg";
+
+  let a1, a2;
+  var imageAspect = imgSize[1] / imgSize[0];
+  const container = document.querySelector('.hero-section__intro');
+  const containerWidth = container ? container.offsetWidth : window.innerWidth;
+  const containerHeight = container ? container.offsetHeight : window.innerHeight;
+  
+  if (containerHeight / containerWidth < imageAspect) {
+    a1 = 1;
+    a2 = containerHeight / containerWidth / imageAspect;
+  } else {
+    a1 = (containerWidth / containerHeight) * imageAspect;
+    a2 = 1;
+  }
+
+  const program = new ogl.Program(gl, {
+    vertex,
+    fragment,
+    uniforms: {
+      uTime: { value: 0 },
+      tWater: { value: texture },
+      res: {
+        value: new ogl.Vec4(containerWidth, containerHeight, a1, a2)
+      },
+      img: { value: new ogl.Vec2(imgSize[0], imgSize[1]) },
+      tFlow: flowmap.uniform
+    }
+  });
+
+  const mesh = new ogl.Mesh(gl, { geometry, program });
+
+  window.addEventListener("resize", resize, false);
+  resize();
+
+  if (isTouchCapable) {
+    window.addEventListener("touchstart", updateMouse, false);
+    window.addEventListener("touchmove", updateMouse, { passive: false });
+  } else {
+    window.addEventListener("mousemove", updateMouse, false);
+  }
+
+  let lastTime;
+  const lastMouse = new ogl.Vec2();
+  
+  function updateMouse(e) {
+    e.preventDefault();
+    if (e.changedTouches && e.changedTouches.length) {
+      e.x = e.changedTouches[0].pageX;
+      e.y = e.changedTouches[0].pageY;
+    }
+    if (e.x === undefined) {
+      e.x = e.pageX;
+      e.y = e.pageY;
+    }
+    
+    mouse.set(e.x / gl.renderer.width, 1.0 - e.y / gl.renderer.height);
+    
+    if (!lastTime) {
+      lastTime = performance.now();
+      lastMouse.set(e.x, e.y);
+    }
+
+    const deltaX = e.x - lastMouse.x;
+    const deltaY = e.y - lastMouse.y;
+    lastMouse.set(e.x, e.y);
+    let time = performance.now();
+    let delta = Math.max(10.4, time - lastTime);
+    lastTime = time;
+    velocity.x = deltaX / delta;
+    velocity.y = deltaY / delta;
+    velocity.needsUpdate = true;
+  }
+
+  requestAnimationFrame(update);
+  
+  function update(t) {
+    requestAnimationFrame(update);
+    
+    if (!velocity.needsUpdate) {
+      mouse.set(-1);
+      velocity.set(0);
+    }
+    velocity.needsUpdate = false;
+    
+    flowmap.aspect = aspect;
+    flowmap.mouse.copy(mouse);
+    flowmap.velocity.lerp(velocity, velocity.len ? 0.15 : 0.1);
+    flowmap.update();
+    
+    program.uniforms.uTime.value = t * 0.01;
+    renderer.render({ scene: mesh });
+  }
+});
+
+
+
