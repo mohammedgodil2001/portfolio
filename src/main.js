@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resize();
   };
   img.crossOrigin = "Anonymous";
-  img.src = "/src/assets/my_name_1.svg";
+  img.src = "/assets/my_name_1.svg";
 
   let a1, a2;
   var imageAspect = imgSize[1] / imgSize[0];
