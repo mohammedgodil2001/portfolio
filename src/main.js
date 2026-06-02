@@ -283,7 +283,7 @@ class ClassicSmooth {
         this.mainRef = document.querySelector(mainSelector);
         this.textConRef = document.querySelector(textConSelector);
         this.scrollTween = null;
-        this.characters = [];
+        this.letters = [];
         this.isMobile = window.innerWidth < 768;
         
         this.init();
@@ -295,10 +295,12 @@ class ClassicSmooth {
             return;
         }
 
-        // Only run animation on desktop
-        if (!this.isMobile) {
-            this.initAnimation();
-        }
+        // Only run animation on desktop when fonts are fully loaded to ensure precise width calculations
+        document.fonts.ready.then(() => {
+            if (!this.isMobile) {
+                this.initAnimation();
+            }
+        });
         
         this.setupResize();
     }
@@ -308,69 +310,66 @@ class ClassicSmooth {
         this.textConRef.style.width = 'max-content';
         this.textRef.style.whiteSpace = 'nowrap';
 
-        this.characters = splitTextIntoChars(this.textRef);
-        const scrub = 0.5;
+        this.wrapLetters();
 
-        // Set initial position - text starts off-screen to the right
+        const letters = this.textRef.querySelectorAll('.letter');
+
+        const startX = window.innerWidth * 1.05;
+        const textWidth = this.textConRef.offsetWidth;
+        const endX = window.innerWidth - textWidth - 100; // Stop when fully visible with 100px margin
+        const totalDistance = Math.abs(startX - endX);
+
+        // Set initial position - text starts completely off-screen to the right (empty screen)
         gsap.set(this.textConRef, { 
-            x: window.innerWidth * 1.1,
+            x: startX,
             willChange: 'transform' 
         });
 
-        // Calculate the full width of text
-        const textWidth = this.textConRef.offsetWidth;
-        
-        // Calculate the total distance text needs to travel
-        // From right edge of screen to completely off the left edge
-        const totalDistance = window.innerWidth + textWidth;
-        
-        // Main horizontal scroll animation with PIN enabled
+        // Main horizontal scroll animation with PIN enabled on the 100vh container
         this.scrollTween = gsap.to(this.textConRef, {
-            x: -textWidth - 200, // Extra padding to ensure complete scroll
+            x: endX,
             ease: 'none',
             scrollTrigger: {
                 trigger: this.mainRef,
-                pin: true, // PIN THE SECTION - keeps it locked while animating
+                pin: true,
                 start: 'top top',
-                end: () => `+=${totalDistance * 1}`, // Scroll distance needed
-                scrub: scrub,
+                end: () => `+=${totalDistance}`,
+                scrub: true,
                 invalidateOnRefresh: true,
                 anticipatePin: 1
             }
         });
 
-        // Animate each character individually
-        this.characters.forEach((char, index) => {
-            // Set initial character state - rotated and positioned above
-            gsap.set(char, { 
-                rotate: 45,
-                y: -180,
-                willChange: 'transform' 
-            });
-
-            // Create timeline for each character animation
-            const tl = gsap.timeline({
-                defaults: { ease: 'none' },
+        // Animate each letter individually as it scrolls into the viewport
+        const totalLetters = letters.length;
+        letters.forEach((letter, i) => {
+            const progress = totalLetters > 1 ? i / (totalLetters - 1) : 1;
+            const endPercent = Math.round(25 + progress * 70); // Progressive snapping from 25% (start of sentence) to 95% (end of sentence)
+            
+            gsap.from(letter, {
+                yPercent: (Math.random() - 0.5) * 230,
+                rotation: (Math.random() - 0.5) * 60,
+                ease: 'elastic.out(1.2, 1)',
                 scrollTrigger: {
-                    trigger: char,
-                    start: 'left 85%',
-                    end: 'left 25%',
+                    trigger: letter,
                     containerAnimation: this.scrollTween,
-                    scrub: 0.3,
+                    start: 'left 99%', // Starts animating immediately upon entering from the right
+                    end: `left ${endPercent}%`, // Ending letters snap earlier so they seat perfectly on baseline when scroll stops
+                    scrub: 0.5,
                     invalidateOnRefresh: true,
-                }
-            });
-
-            // Animate character to final position
-            tl.to(char, {
-                rotate: 0,
-                y: 0,
-                duration: 1
+                },
             });
         });
 
-        console.log('[ClassicSmooth] Animation initialized with', this.characters.length, 'characters');
-        console.log('[ClassicSmooth] Text width:', textWidth, 'Total distance:', totalDistance);
+        console.log('[ClassicSmooth] Animation initialized with', letters.length, 'letters');
+    }
+
+    wrapLetters() {
+        const text = this.textRef.textContent;
+        this.textRef.innerHTML = text
+            .split('')
+            .map((char) => (char === ' ' ? '<span class="space">&nbsp;</span>' : `<span class="letter">${char}</span>`))
+            .join('');
     }
 
     setupResize() {
