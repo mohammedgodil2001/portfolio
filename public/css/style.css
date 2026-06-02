@@ -43,9 +43,7 @@ body {
     font-style: normal;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-}
+/* General typography is unified under the base styles and '*' selector */
 
 /* ===== NAVIGATION ===== */
 .nav {
@@ -179,49 +177,14 @@ body {
 .hero__aside {
     display: flex;
     justify-content: space-between;
-    align-items: end;
-}
-
-.hero__avatar {
-    width: 100%;
-    max-width: 7rem;
-}
-
-.availability {
-    display: flex;
-    flex-direction: column;
-}
-
-.availability__date {
-    font-family: "impact", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2.8rem;
-    color: #1636FF;
-}
-
-.availability__status {
-    color: #1636FF;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.035rem;
-    text-transform: uppercase;
-    line-height: 127%;
-}
-
-.hero__aside {
-    display: flex;
-    align-items: flex-end;           
-    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .hero__avatar {
     display: block;
-    width: auto;               
+    width: 100%;
     height: auto;
     max-width: 7rem;
-    /* width: clamp(7rem, 5rem + 5vw, 25rem); */
 }
 
 .availability {
@@ -233,11 +196,22 @@ body {
 }
 
 .availability__status {
-    margin: 0;
+    color: #1636FF;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.035rem;
+    text-transform: uppercase;
     line-height: 1.3;
+    margin: 0;
 }
 
 .availability__date {
+    font-family: "impact", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.8rem;
+    color: #1636FF;
     margin: 0;
     line-height: 1;
 }

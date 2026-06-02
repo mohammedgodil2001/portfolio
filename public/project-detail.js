@@ -1,6 +1,36 @@
 import { projects } from './data/projects.js';
 
-function loadProjectDetails() {
+/**
+ * Highly optimized Intersection Observer system for autoplaying muted videos
+ * on-screen and auto-pausing them when they scroll off-screen.
+ */
+const createVideoObserver = () => {
+  return new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // Attempt unmuted audio playback first (permissible due to prior user click/navigation gesture)
+        video.muted = false;
+        video.play().catch(err => {
+          console.log('Unmuted autoplay blocked by browser, falling back to muted:', err);
+          // Fallback to muted playback if browser blocks unmuted audio autoplay
+          video.muted = true;
+          video.play().catch(e => console.log('Muted autoplay blocked:', e));
+        });
+      } else {
+        video.pause();
+      }
+    });
+  }, {
+    threshold: 0.15 // Play/pause when 15% of the video is visible
+  });
+};
+
+/**
+ * Loads project metadata, copies information to the DOM,
+ * and builds the media gallery dynamically with full performance optimization.
+ */
+const loadProjectDetails = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get('id');
   
@@ -11,92 +41,83 @@ function loadProjectDetails() {
     return;
   }
   
-  // Update page title
+  // Set window titles
   document.getElementById('project-title').textContent = project.title;
   document.title = `${project.title} - Mohammed Godil`;
   
-  // Update project details
-//   document.getElementById('detail-title').innerHTML = project.title;
-//   document.getElementById('detail-focus').textContent = project.focus;
-//   document.getElementById('detail-year').textContent = project.year;
-//   document.getElementById('detail-software').textContent = project.software;
-//   document.getElementById('detail-description').textContent = project.description;
-
-
-// Update project details
-document.getElementById('detail-title').innerHTML = project.title;
-document.getElementById('detail-focus').textContent = project.focus;
-document.getElementById('detail-year').textContent = project.year;
-document.getElementById('detail-description').textContent = project.description;
-
-// Update software/technologies label AND value based on category
-const techLabel = document.getElementById('tech-label');
-if (project.category === 'design') {
-  techLabel.textContent = 'Software';
-  document.getElementById('detail-software').textContent = project.software;
-} else if (project.category === 'coding' || project.category === 'design-coding') {
-  techLabel.textContent = 'Technologies';
-  document.getElementById('detail-software').textContent = project.technologies;
-}
-
-// Show "See the project" button if liveUrl exists
-const liveButton = document.getElementById('live-project-button');
-if (project.liveUrl) {
-  liveButton.href = project.liveUrl;
-  liveButton.style.display = 'inline-block';
-} else {
-  liveButton.style.display = 'none';
-}
-
-   
+  // Set project text values
+  document.getElementById('detail-title').innerHTML = project.title;
+  document.getElementById('detail-focus').textContent = project.focus;
+  document.getElementById('detail-year').textContent = project.year;
+  document.getElementById('detail-description').textContent = project.description;
   
-
-// Populate image gallery with <img> tags OR <video> tags
-const galleryGrid = document.getElementById('gallery-grid');
-if (project.id === 'digiphy-interactive-experience') {
-  galleryGrid.classList.add('project-gallery__grid--full-width');
-}
-project.images.forEach((mediaSrc, index) => {
-  const container = document.createElement('div');
-  container.className = 'gallery-image-container';
+  // Update technology/software label and value based on category
+  const techLabel = document.getElementById('tech-label');
+  const softwareElement = document.getElementById('detail-software');
   
-
-// Check if it's a video file
-if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov')) {
-  const video = document.createElement('video');
-  video.src = mediaSrc;
-  video.className = 'gallery-image';
-  video.controls = true;  // ← Add controls
-  video.loop = true;
-  video.muted = false;    // ← Allow sound
-  video.playsInline = true;
-  video.preload = 'metadata'; // ← Performance optimization: only load video metadata initially
-  
-  container.appendChild(video);
-}
-  else {
-    const img = document.createElement('img');
-    img.src = mediaSrc;
-    img.alt = `${project.title} - Image ${index + 1}`;
-    img.className = 'gallery-image';
-    img.loading = 'lazy';
-    
-    container.appendChild(img);
+  if (project.category === 'design') {
+    techLabel.textContent = 'Software';
+    softwareElement.textContent = project.software;
+  } else if (project.category === 'coding' || project.category === 'design-coding') {
+    techLabel.textContent = 'Technologies';
+    softwareElement.textContent = project.technologies;
   }
   
-  galleryGrid.appendChild(container);
-});
-
-
-}
-
+  // Control visibility of the live project button
+  const liveButton = document.getElementById('live-project-button');
+  if (project.liveUrl) {
+    liveButton.href = project.liveUrl;
+    liveButton.style.display = 'inline-block';
+    liveButton.textContent = project.liveText || 'View Project';
+  } else {
+    liveButton.style.display = 'none';
+  }
+  
+  // Populate the media grid
+  const galleryGrid = document.getElementById('gallery-grid');
+  if (project.id === 'digiphy-interactive-experience' || project.id === 'the-invisible-pulse') {
+    galleryGrid.classList.add('project-gallery__grid--full-width');
+  }
+  
+  const videoObserver = createVideoObserver();
+  
+  project.images.forEach((mediaSrc, index) => {
+    const container = document.createElement('div');
+    container.className = 'gallery-image-container';
+    
+    const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov');
+    
+    if (isVideo) {
+      const video = document.createElement('video');
+      video.src = mediaSrc;
+      video.className = 'gallery-image';
+      video.controls = true;      // Native controls for unmuting and scrubbing
+      video.loop = true;
+      video.muted = true;         // Required for browser autoplay policies
+      video.playsInline = true;
+      video.preload = 'metadata'; // Performance: only load video headers initially
+      
+      container.appendChild(video);
+      videoObserver.observe(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = mediaSrc;
+      img.alt = `${project.title} - Image ${index + 1}`;
+      img.className = 'gallery-image';
+      img.loading = 'lazy';       // Native lazy loading for images
+      
+      container.appendChild(img);
+    }
+    
+    galleryGrid.appendChild(container);
+  });
+};
 
 loadProjectDetails();
 
-
-
-
-
+/**
+ * Mobile Navigation Drawer Interactions
+ */
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
   $navList.classList.add("abc");
@@ -114,20 +135,14 @@ const toggleNavigation = ($navButton, $navList) => {
     : closeNavigation($navButton, $navList);
 };
 
-const navigation = () => {
+const initNavigationSystem = () => {
   const $navButton = document.querySelector(".nav__button");
   const $navList = document.querySelector(".nav__list");
   const listItems = $navList.querySelectorAll("li a");
   const closingButton = document.querySelector(".closing__button");
 
-  $navButton.addEventListener("click", () =>
-    toggleNavigation($navButton, $navList)
-  );
-
-  closingButton.addEventListener("click", () =>
-    closeNavigation($navButton, $navList)
-  );
-
+  $navButton.addEventListener("click", () => toggleNavigation($navButton, $navList));
+  closingButton.addEventListener("click", () => closeNavigation($navButton, $navList));
   listItems.forEach((link) => {
     link.addEventListener("click", () => closeNavigation($navButton, $navList));
   });
@@ -140,4 +155,4 @@ const navigation = () => {
   });
 };
 
-navigation();
+initNavigationSystem();

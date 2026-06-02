@@ -213,6 +213,17 @@
     color: #1636FF;
     font-size: 1.375rem;
     align-self: flex-start;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.live-project-btn:hover {
+    transform: scale(1.05);
+    background-color: #e5e400;
+    box-shadow: 0 4px 15px rgba(255, 254, 0, 0.35);
+}
+
+.live-project-btn:active {
+    transform: scale(0.98);
 }
 
 

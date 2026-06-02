@@ -91,52 +91,67 @@ export const projects = [
     '/assets/WebRtc_1.mp4',
   ]
 },
-{
-  id: 'generative-poster-tool',
-  title: 'GENERATIVE POSTER TOOL',
-  category: 'coding',
-  focus: 'Creative Coding & Interactive Design',
-  year: '2025',
-  technologies: 'JavaScript, Three.js, WebGL, GLSL',
-  description: 'I built an interactive web tool that lets users create their own generative posters in real time. It uses shaders and 3D graphics to make unique abstract visuals that constantly change and react as you design. The goal was to mix art and code — giving users full creative control to experiment and create something different every time.',
-  thumbnail: './src/assets/posters_2.webp',
-  liveUrl: 'https://shaders-assignemnt.vercel.app/',
-  images: [
-      '/assets/posters_2.webp',
-   '/assets/posters_1.mp4',
-  ]
-},
-{
-  id: 'photo-booth-app',
-  title: 'PHOTO BOOTH APP',
-  category: 'coding',
-  focus: 'Mobile App & UI Design',
-  year: '2025',
-  technologies: 'React Native, Expo SDK, TypeScript, Zustand, JavaScript',
-  description: 'A native mobile photo booth app that lets users capture or upload photos, customize them with filters, colors, and text, and save photostrips straight to their gallery. Inspired by vintage photo booths, it combines playful design with modern camera features — built using React Native and Expo to showcase smooth native performance on both iOS and Android.',
-  thumbnail: './assets/images/photo-booth-thumb.jpg',
-  images: [
-      '/assets/photoBooth_2.webp',
-    '/assets/photoBooth_1.mp4',
-  ]
-},
-{
-  id: 'digiphy-interactive-experience',
-  title: 'DIGIPHY',
-  category: 'design-coding',
-  focus: 'Interactive Design & Creative Development',
-  year: '2026',
-  technologies: 'GSAP, JavaScript, Blender, After Effects',
-  description: 'An interactive digital experience created for Granstudio to showcase DigiPHY, a mixed-reality tool used in the automotive design process. Instead of presenting the product through a traditional website, the experience uses storytelling, animations, and interactive elements to help users understand how DigiPHY combines physical and digital design. The goal is to make the product easier to explore, understand, and remember.',
-  thumbnail: './src/assets/digiphy_thumbnail.webp',
-  images: [
-    '/assets/digiphy_01_intro.mp4',
-    '/assets/digiphy_02_experience.mp4',
-    '/assets/digiphy_03_experience.mp4',
-    '/assets/digiphy_04_experience.mp4'
-  ]
-}
-
-
-
+  {
+    id: 'generative-poster-tool',
+    title: 'GENERATIVE POSTER TOOL',
+    category: 'coding',
+    focus: 'Creative Coding & Interactive Design',
+    year: '2025',
+    technologies: 'JavaScript, Three.js, WebGL, GLSL',
+    description: 'I built an interactive web tool that lets users create their own generative posters in real time. It uses shaders and 3D graphics to make unique abstract visuals that constantly change and react as you design. The goal was to mix art and code — giving users full creative control to experiment and create something different every time.',
+    thumbnail: './src/assets/posters_2.webp',
+    liveUrl: 'https://shaders-assignemnt.vercel.app/',
+    liveText: 'View Project',
+    images: [
+        '/assets/posters_2.webp',
+     '/assets/posters_1.mp4',
+    ]
+  },
+  {
+    id: 'photo-booth-app',
+    title: 'PHOTO BOOTH APP',
+    category: 'coding',
+    focus: 'Mobile App & UI Design',
+    year: '2025',
+    technologies: 'React Native, Expo SDK, TypeScript, Zustand, JavaScript',
+    description: 'A native mobile photo booth app that lets users capture or upload photos, customize them with filters, colors, and text, and save photostrips straight to their gallery. Inspired by vintage photo booths, it combines playful design with modern camera features — built using React Native and Expo to showcase smooth native performance on both iOS and Android.',
+    thumbnail: './assets/images/photo-booth-thumb.jpg',
+    images: [
+        '/assets/photoBooth_2.webp',
+      '/assets/photoBooth_1.mp4',
+    ]
+  },
+  {
+    id: 'digiphy-interactive-experience',
+    title: 'DIGIPHY',
+    category: 'design-coding',
+    focus: 'Interactive Design & Creative Development',
+    year: '2026',
+    technologies: 'GSAP, JavaScript, Blender, After Effects',
+    description: 'An interactive digital experience created for Granstudio to showcase DigiPHY, a mixed-reality tool used in the automotive design process. Instead of presenting the product through a traditional website, the experience uses storytelling, animations, and interactive elements to help users understand how DigiPHY combines physical and digital design. The goal is to make the product easier to explore, understand, and remember.',
+    thumbnail: './src/assets/digiphy_thumbnail.webp',
+    liveUrl: 'https://digiphy-team10.vercel.app/',
+    liveText: 'View project',
+    images: [
+      '/assets/digiphy_01_intro.mp4',
+      '/assets/digiphy_02_experience.mp4',
+      '/assets/digiphy_03_experience.mp4',
+      '/assets/digiphy_04_experience.mp4'
+    ]
+  },
+  {
+    id: 'the-invisible-pulse',
+    title: 'THE INVISIBLE PULSE',
+    category: 'design-coding',
+    focus: 'Creative Technology & Interactive Installation',
+    year: '2026',
+    technologies: 'Arduino, TouchDesigner, Projection Mapping, VCV Rack, JavaScript, P5.js',
+    description: 'An interactive installation that makes the hidden electrical activity of plants visible. Using custom-built sensors, plant biodata is translated into generative visuals and ambient sound in real time. When visitors touch the plant, the projected visuals and soundscape respond instantly, creating a connection between humans, nature, and technology.',
+    thumbnail: './src/assets/invisible_pulse_thumbnail.mov',
+    liveUrl: 'https://www.notion.so/The-Invisible-Pulse-2bbcbbd7659380e4ba01ede7f95fc8a6',
+    liveText: 'view process',
+    images: [
+      '/assets/invisible_pulse_01_installation.mp4'
+    ]
+  }
 ];

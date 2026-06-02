@@ -86,7 +86,8 @@ const initProjectsInteraction = () => {
       4: 'webrtc-smoothie-maker',
       5: 'generative-poster-tool',
       6: 'photo-booth-app',
-      7: 'digiphy-interactive-experience'
+      7: 'digiphy-interactive-experience',
+      8: 'the-invisible-pulse'
     };
 
     // Add click handlers to all projects
