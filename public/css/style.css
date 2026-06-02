@@ -454,6 +454,10 @@ body {
     letter-spacing: -0.0575rem;
 }
 
+.project-tech{
+    text-align: right;
+}
+
 .projects-list {
     width: 90%;
     margin: 0 auto;
@@ -895,8 +899,29 @@ body {
 
 .footer-nav {
     display: flex;
+    flex-wrap: wrap;
     gap: 12rem;
     margin-bottom: auto;
+}
+
+.footer-logo-link {
+    margin-left: auto;
+    align-self: flex-start;
+    display: inline-block;
+    /* width: clamp(14rem, 25vw, 24rem); */
+    width: clamp(10rem, 20vw, 18rem);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.footer-logo-link:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+.footer-logo {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .nav-column {
@@ -1156,8 +1181,14 @@ body {
     }
 
     .footer-nav {
-        gap: 4rem;
+        /* gap: 4rem; */
         margin-bottom: 4rem;
+    }
+
+    .footer-logo-link {
+        margin-left: 0;
+        margin-top: 2rem;
+        width: clamp(12rem, 40vw, 16rem);
     }
 
     .nav-title {
@@ -1352,7 +1383,7 @@ body {
 
 @media (max-width: 899px) {
   .expertise {
-      padding: 4rem 1rem;
+      /* padding: 4rem 1rem; */
       gap: 3rem;
   }
 
