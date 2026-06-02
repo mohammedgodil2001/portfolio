@@ -1,4 +1,8 @@
 import * as ogl from 'ogl';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TextPlugin } from 'gsap/TextPlugin';
+import Lenis from 'lenis';
 const openNavigation = ($navButton, $navList) => {
   $navButton.setAttribute("aria-expanded", "true");
   $navList.classList.add("abc");
@@ -81,7 +85,8 @@ const initProjectsInteraction = () => {
       3: 'kickstarter',
       4: 'webrtc-smoothie-maker',
       5: 'generative-poster-tool',
-      6: 'photo-booth-app'
+      6: 'photo-booth-app',
+      7: 'digiphy-interactive-experience'
     };
 
     // Add click handlers to all projects
@@ -298,6 +303,10 @@ class ClassicSmooth {
     }
 
     initAnimation() {
+        // Dynamically apply styles required for the horizontal scrolling animation
+        this.textConRef.style.width = 'max-content';
+        this.textRef.style.whiteSpace = 'nowrap';
+
         this.characters = splitTextIntoChars(this.textRef);
         const scrub = 0.5;
 
@@ -610,6 +619,11 @@ document.addEventListener('DOMContentLoaded', function() {
       vec3 flow = texture2D(tFlow, vUv).rgb;
       vec2 uv = .5 * gl_FragCoord.xy / res.xy;
       vec2 myUV = (uv - vec2(0.5))*res.zw + vec2(0.5);
+      
+      // Map vertical coordinate from cropped text area to the full 1200px SVG height (accounting for WebGL's inverted Y axis).
+      // Active text area is shifted upwards to reduce empty space at the top.
+      myUV.y = 0.4708 + myUV.y * 0.1833;
+      
       myUV -= flow.xy * (0.25 * 0.7);
       vec4 tex = texture2D(tWater, myUV);
       gl_FragColor = vec4(tex.rgb, tex.a);
@@ -645,19 +659,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function resize() {
     let a1, a2;
-    var imageAspect = imgSize[1] / imgSize[0];
+    // Cropped text box aspect ratio (1600px width / 220px height)
+    var imageAspect = 220 / 1600; 
     
     // Get the intro section dimensions
     const container = document.querySelector('.hero-section__intro');
     const containerWidth = container ? container.offsetWidth : window.innerWidth;
     const containerHeight = container ? container.offsetHeight : window.innerHeight;
     
-    if (containerHeight / containerWidth < imageAspect) {
-      a1 = 1;
-      a2 = containerHeight / containerWidth / imageAspect;
+    const containerAspect = containerWidth / containerHeight;
+    
+    if (containerAspect > 1600 / 220) {
+      // Container is wider than the text aspect ratio -> scale horizontally, keep height filled
+      a2 = 1.0;
+      a1 = containerAspect / (1600 / 220);
     } else {
-      a1 = (containerWidth / containerHeight) * imageAspect;
-      a2 = 1;
+      // Container is narrower than the text aspect ratio -> scale vertically, keep width filled
+      a1 = 1.0;
+      a2 = (1600 / 220) / containerAspect;
     }
     
     mesh.program.uniforms.res.value = new ogl.Vec4(
@@ -699,17 +718,17 @@ document.addEventListener('DOMContentLoaded', function() {
   img.src = "/assets/my_name_1.svg";
 
   let a1, a2;
-  var imageAspect = imgSize[1] / imgSize[0];
   const container = document.querySelector('.hero-section__intro');
   const containerWidth = container ? container.offsetWidth : window.innerWidth;
   const containerHeight = container ? container.offsetHeight : window.innerHeight;
   
-  if (containerHeight / containerWidth < imageAspect) {
-    a1 = 1;
-    a2 = containerHeight / containerWidth / imageAspect;
+  const containerAspect = containerWidth / containerHeight;
+  if (containerAspect > 1600 / 220) {
+    a2 = 1.0;
+    a1 = containerAspect / (1600 / 220);
   } else {
-    a1 = (containerWidth / containerHeight) * imageAspect;
-    a2 = 1;
+    a1 = 1.0;
+    a2 = (1600 / 220) / containerAspect;
   }
 
   const program = new ogl.Program(gl, {
@@ -789,6 +808,41 @@ document.addEventListener('DOMContentLoaded', function() {
     program.uniforms.uTime.value = t * 0.01;
     renderer.render({ scene: mesh });
   }
+
+  // Availability text switcher animation
+  const initAvailabilityTextSwitcher = () => {
+    const dateElement = document.querySelector('.availability__date');
+    if (!dateElement) return;
+
+    const options = ['Full-time', 'Student Job', 'Internship'];
+    let currentIndex = 0;
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % options.length;
+      
+      // Smooth slide-out and fade-out animation using GSAP
+      gsap.to(dateElement, {
+        y: 10,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          dateElement.textContent = options[currentIndex];
+          gsap.set(dateElement, { y: -10 });
+          
+          // Smooth slide-in and fade-in animation using GSAP
+          gsap.to(dateElement, {
+            y: 0,
+            opacity: 1,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        }
+      });
+    }, 3000);
+  };
+
+  initAvailabilityTextSwitcher();
 });
 
 

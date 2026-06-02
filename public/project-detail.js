@@ -34,7 +34,7 @@ const techLabel = document.getElementById('tech-label');
 if (project.category === 'design') {
   techLabel.textContent = 'Software';
   document.getElementById('detail-software').textContent = project.software;
-} else if (project.category === 'coding') {
+} else if (project.category === 'coding' || project.category === 'design-coding') {
   techLabel.textContent = 'Technologies';
   document.getElementById('detail-software').textContent = project.technologies;
 }
@@ -53,6 +53,9 @@ if (project.liveUrl) {
 
 // Populate image gallery with <img> tags OR <video> tags
 const galleryGrid = document.getElementById('gallery-grid');
+if (project.id === 'digiphy-interactive-experience') {
+  galleryGrid.classList.add('project-gallery__grid--full-width');
+}
 project.images.forEach((mediaSrc, index) => {
   const container = document.createElement('div');
   container.className = 'gallery-image-container';
@@ -67,6 +70,7 @@ if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith
   video.loop = true;
   video.muted = false;    // ← Allow sound
   video.playsInline = true;
+  video.preload = 'metadata'; // ← Performance optimization: only load video metadata initially
   
   container.appendChild(video);
 }

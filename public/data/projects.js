@@ -79,6 +79,19 @@ export const projects = [
 
   // CODING PROJECTS
 {
+  id: 'webrtc-smoothie-maker',
+  title: 'WEBRTC SMOOTHIE MAKER',
+  category: 'coding',
+  focus: 'Creative Coding & Real-Time Interaction',
+  year: '2025',
+  technologies: 'WebRTC, Socket.IO, GSAP, Device Motion API, JavaScript',
+  description: 'A real-time interactive project where users can control a virtual blender on their phone. After scanning a QR code, the phone connects directly to the desktop. No data stored, just a smooth peer-to-peer connection. Users can pick fruits on their phone, see them appear instantly in the blender on screen, shake to blend, and tap to pour the smoothie into a glass. Built with WebRTC, Socket.IO, and GSAP for a fun and seamless experience.',
+  thumbnail: './src/assets/image_7.svg',
+  images: [
+    '/assets/WebRtc_1.mp4',
+  ]
+},
+{
   id: 'generative-poster-tool',
   title: 'GENERATIVE POSTER TOOL',
   category: 'coding',
@@ -108,16 +121,19 @@ export const projects = [
   ]
 },
 {
-  id: 'webrtc-smoothie-maker',
-  title: 'WEBRTC SMOOTHIE MAKER',
-  category: 'coding',
-  focus: 'Creative Coding & Real-Time Interaction',
-  year: '2025',
-  technologies: 'WebRTC, Socket.IO, GSAP, Device Motion API, JavaScript',
-  description: 'A real-time interactive project where users can control a virtual blender on their phone. After scanning a QR code, the phone connects directly to the desktop. No data stored, just a smooth peer-to-peer connection. Users can pick fruits on their phone, see them appear instantly in the blender on screen, shake to blend, and tap to pour the smoothie into a glass. Built with WebRTC, Socket.IO, and GSAP for a fun and seamless experience.',
-  thumbnail: './src/assets/image_7.svg',
+  id: 'digiphy-interactive-experience',
+  title: 'DIGIPHY',
+  category: 'design-coding',
+  focus: 'Interactive Design & Creative Development',
+  year: '2026',
+  technologies: 'GSAP, JavaScript, Blender, After Effects',
+  description: 'An interactive digital experience created for Granstudio to showcase DigiPHY, a mixed-reality tool used in the automotive design process. Instead of presenting the product through a traditional website, the experience uses storytelling, animations, and interactive elements to help users understand how DigiPHY combines physical and digital design. The goal is to make the product easier to explore, understand, and remember.',
+  thumbnail: './src/assets/digiphy_thumbnail.webp',
   images: [
-    '/assets/WebRtc_1.mp4',
+    '/assets/digiphy_01_intro.mp4',
+    '/assets/digiphy_02_experience.mp4',
+    '/assets/digiphy_03_experience.mp4',
+    '/assets/digiphy_04_experience.mp4'
   ]
 }
 

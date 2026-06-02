@@ -133,6 +133,11 @@
   grid-template-columns: 1fr;
 }
 
+/* Force full-width grid columns for projects that request it (like DIGIPHY) */
+.project-gallery__grid--full-width .gallery-image-container {
+  grid-column: 1 / -1 !important;
+}
+
 .gallery-image-container {
   width: 100%;
   overflow: hidden;
