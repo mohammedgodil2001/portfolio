@@ -189,10 +189,11 @@ body {
 
 .availability {
     display: grid;             
-    justify-items: start;        
+    justify-items: end;        
     align-content: end;
     width: max-content;       
     flex: 0 0 auto;            
+    text-align: right;
 }
 
 .availability__status {
@@ -865,6 +866,7 @@ body {
     white-space: normal;
     font-family: "helvetica-lt-pro", sans-serif;
     font-weight: 700;
+    font-size: clamp(3.5rem, 21vw, 15rem);
     line-height: 1;
     color: #1636FF; 
 }
@@ -879,7 +881,9 @@ body {
     background: #1a1aff;
     padding: 3rem 4rem 3rem 4rem;
     z-index: 10;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     width: 100%;
     position: relative;
 }
@@ -893,24 +897,45 @@ body {
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex-grow: 1;
     justify-content: space-between;
 }
 
 .footer-nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: auto;
 }
 
+.footer-nav__columns {
+    display: flex;
+    gap: clamp(3rem, 8vw, 8rem);
+}
+
 .footer-logo-link {
-    margin-left: auto;
-    align-self: flex-start;
     display: inline-block;
-    /* width: clamp(14rem, 25vw, 24rem); */
-    width: clamp(10rem, 20vw, 18rem);
+    width: clamp(6.5rem, 10vw, 11rem);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .footer-nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+    .footer-nav__columns {
+        gap: clamp(6rem, 10vw, 12rem);
+    }
+
+    .footer-logo-link {
+        flex-shrink: 0;
+    }
 }
 
 .footer-logo-link:hover {
@@ -970,7 +995,7 @@ body {
 
 .footer-heading {
     font-family: 'impact', sans-serif;
-    font-size: clamp(6rem, 15vw, 20rem);
+    font-size: clamp(4rem, 14vw, 20rem);
     font-weight: 400;
     color: #fff;
     letter-spacing: 0.02em;
@@ -991,7 +1016,7 @@ body {
 .footer-email,
 .footer-copyright {
     font-family: 'helvetica-lt-pro', sans-serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 0.85rem + 0.65vw, 1.8rem);
     color: #FFFE00;
     margin: 0;
     font-weight: 400;
@@ -1067,39 +1092,9 @@ body {
     
 }
 
-/* Scroll Text - 768px and above */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .scroll-text {
-        font-size: 9rem;
-    }
-}
-
-/* Scroll Text - 1024px and above */
 @media (min-width: 1024px) and (max-width: 1279px) {
-    .scroll-text {
-        font-size: 12rem;
-    }
     .footer-bottom {
         gap: 2rem; 
-    }
-    
-    .footer-email,
-    .footer-copyright {
-        font-size: 1.3rem; 
-    }
-}
-
-/* Scroll Text - 1280px and above */
-@media (min-width: 1280px) and (max-width: 1535px) {
-    .scroll-text {
-        font-size: 15rem;
-    }
-}
-
-/* Scroll Text - 1536px and above */
-@media (min-width: 1536px) {
-    .scroll-text {
-        font-size: 19rem;
     }
 }
 
@@ -1113,12 +1108,12 @@ body {
 
 
 @media (max-width: 1024px) {
-    .footer {
-        padding: 3rem 3rem 2rem 3rem;
+    body {
+        height: auto;
     }
 
-    .footer-nav {
-        gap: 8rem;
+    .footer {
+        padding: 4rem 3rem 4rem 3rem;
     }
 
     .nav-title {
@@ -1129,14 +1124,17 @@ body {
         font-size: 2rem;
     }
 
-    .footer-heading {
+    /* .footer-heading {
         font-size: 11rem;
         line-height: 110%;
+    } */
+
+    .footer-main {
+        margin-top: 0;
     }
 
-    .footer-email,
-    .footer-copyright {
-        font-size: 1.5rem;
+    .footer-bottom {
+        margin-top: 0;
     }
 }
 
@@ -1161,17 +1159,12 @@ body {
     .scroll-text {
         position: static;
         transform: none;
-        font-size: 5.5rem;
-        font-weight: 700;
         line-height: 1.1;
-        white-space: normal;
-        color: #1636FF;
         letter-spacing: -0.085em;
     }
 
     .footer {
-        min-height: 100vh;
-        padding: 2rem 1.5rem 2rem 1.5rem;
+        padding: 3rem 1.5rem 3rem 1.5rem;
     }
 
     .footer-main-container {
@@ -1180,15 +1173,8 @@ body {
         gap: 2rem;
     }
 
-    .footer-nav {
-        /* gap: 4rem; */
-        margin-bottom: 4rem;
-    }
-
-    .footer-logo-link {
-        margin-left: 0;
-        margin-top: 2rem;
-        width: clamp(12rem, 40vw, 16rem);
+    .footer-nav__columns {
+        gap: clamp(2.5rem, 10vw, 4rem);
     }
 
     .nav-title {
@@ -1200,42 +1186,34 @@ body {
         gap: 1rem;
     }
 
-    .footer-heading {
+    /* .footer-heading {
         font-size: 5.5rem;
         line-height: 110%;
+    } */
+
+    .footer-main {
+        margin-top: 0;
     }
 
     .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-    }
-
-    .footer-email,
-    .footer-copyright {
-        font-size: 1.2rem;
+        margin-top: 0;
     }
 }
 
 
    @media (max-width: 599px) {
-    .footer-heading {
+    /* .footer-heading {
         font-size: 5.5rem;
-    }
+    } */
 }
 
 @media (min-width: 600px) and (max-width: 767px) {
-    .footer-heading {
+    /* .footer-heading {
         font-size: clamp(7rem, 15vw, 10rem); 
-    }
-
-    .footer-email, .footer-copyright {
-        font-size: clamp(1.3rem, 3vw, 1.5rem); 
-    }
-
-    .scroll-text {
-        font-size: clamp(8rem, 9vw, 10rem); 
-    }
+    } */
 
     .nav-links a {
         font-size: clamp(1.6rem, 2.5vw, 2rem); 
@@ -1248,7 +1226,7 @@ body {
 
 @media (min-width: 760px) and (max-width: 780px) {
     .footer-bottom{
-      flex-direction: column;
+      /* flex-direction: column; */
       align-items: flex-start;
       gap: 1rem;
     }
@@ -1299,7 +1277,7 @@ body {
   min-width: 300px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
 
   .expertise__list {
       display: grid;
@@ -1381,14 +1359,22 @@ body {
   }
 } */
 
-@media (max-width: 899px) {
+@media (max-width: 1024px) {
   .expertise {
-      /* padding: 4rem 1rem; */
+      padding: 4rem 0;
       gap: 3rem;
   }
 
   .expertise__list {
+      width: 100%;
+      padding: 0 1.5rem;
+      margin: 0;
+      scroll-padding: 0 1.5rem;
       padding-bottom: 2rem;
+  }
+
+  .expertise__item {
+      min-width: 260px;
   }
 }
 

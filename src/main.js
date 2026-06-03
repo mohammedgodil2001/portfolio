@@ -243,30 +243,6 @@ initDraggableNotes();
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Request animation frame loop
-const raf = (time) => {
-    requestAnimationFrame(raf);
-};
-requestAnimationFrame(raf);
-
-// Split text into individual character spans
-const splitTextIntoChars = (element) => {
-    const text = element.textContent;
-    element.innerHTML = '';
-    
-    const chars = [];
-    for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        element.appendChild(span);
-        chars.push(span);
-    }
-    
-    return chars;
-};
-
 // Debounce utility function
 const debounce = (func, delay) => {
     let timeout;
@@ -520,7 +496,7 @@ const animateExpertiseSection = () => {
   // Exit if section doesn't exist
   if (!section) return;
 
-  if (window.innerWidth < 900) return;
+  if (window.innerWidth < 1025) return;
   
   const cards = section.querySelectorAll('.expertise__item');
   const title = section.querySelector('.expertise__title');
@@ -809,40 +785,39 @@ document.addEventListener('DOMContentLoaded', function() {
     renderer.render({ scene: mesh });
   }
 
-  // Availability text switcher animation
-  const initAvailabilityTextSwitcher = () => {
-    const dateElement = document.querySelector('.availability__date');
-    if (!dateElement) return;
+});
 
-    const options = ['Full-time', 'Student Job', 'Internship'];
-    let currentIndex = 0;
+// Availability text switcher animation (runs on all device sizes)
+document.addEventListener('DOMContentLoaded', () => {
+  const dateElement = document.querySelector('.availability__date');
+  if (!dateElement) return;
 
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % options.length;
-      
-      // Smooth slide-out and fade-out animation using GSAP
-      gsap.to(dateElement, {
-        y: 10,
-        opacity: 0,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => {
-          dateElement.textContent = options[currentIndex];
-          gsap.set(dateElement, { y: -10 });
-          
-          // Smooth slide-in and fade-in animation using GSAP
-          gsap.to(dateElement, {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-      });
-    }, 3000);
-  };
+  const options = ['Full-time', 'Student Job', 'Internship'];
+  let currentIndex = 0;
 
-  initAvailabilityTextSwitcher();
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % options.length;
+    
+    // Smooth slide-out and fade-out animation using GSAP
+    gsap.to(dateElement, {
+      y: 10,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        dateElement.textContent = options[currentIndex];
+        gsap.set(dateElement, { y: -10 });
+        
+        // Smooth slide-in and fade-in animation using GSAP
+        gsap.to(dateElement, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    });
+  }, 3000);
 });
 
 
