@@ -17,6 +17,8 @@ export const projects = [
       '/assets/mixbox_7.webp',
       '/assets/mixbox_8.webp',
     ],
+    liveUrl: 'https://www.figma.com/design/pYxWPcuW00L0Mlc4udCYEd/VD4-2425-MixBox---mohammed-godil?node-id=2805-2&t=Y4aMhvd6l9O240zm-1',
+    liveText: 'view process',
     thumbnail: './src/assets/image_1.svg' // For gallery preview
   },
   {
@@ -55,6 +57,8 @@ export const projects = [
      '/assets/flower-workshop_9.svg',
      '/assets/flower-workshop_10.svg',
     ],
+    liveUrl: 'https://www.figma.com/proto/v3qbR1iig015FKcirQ6xOT/Untitled?node-id=1-4714&viewport=464%2C-195%2C0.02&t=YWE60IJi5QEWSVt4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+    liveText: 'view process',
     thumbnail: './src/assets/image_3.svg'
   },
   {
